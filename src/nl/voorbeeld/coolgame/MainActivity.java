@@ -26,8 +26,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		
-		//DELETE DEZE REGEL
-
 		// Find some of the user interface elements
 		gameView = (CoolGameBoardView) findViewById(R.id.game);
 		scoreLabel = (TextView) findViewById(R.id.scoreTextView);
