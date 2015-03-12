@@ -22,6 +22,7 @@ public class CoolGame extends Game {
 	private int score;
 	
 	//TEST COMMIT
+	//TEST 2
 
 	/**
 	 * Constructor.
