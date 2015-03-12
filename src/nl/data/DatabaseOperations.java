@@ -1,5 +1,10 @@
 package nl.data;
 
+/**
+ * @author Bas
+ * Deze code zorgt ervoor dat alles word opgeslagen in de Database.
+ */
+
 import nl.data.TableData.TableInfo;
 import android.content.ContentValues;
 import android.content.Context;

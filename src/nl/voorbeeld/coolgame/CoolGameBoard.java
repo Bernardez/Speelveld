@@ -8,8 +8,8 @@ import nl.saxion.act.playground.model.GameBoard;
  * @author Paul de Groot
  */
 public class CoolGameBoard extends GameBoard {
-	private static final int GAMEBOARD_WIDTH = 10;
-	private static final int GAMEBOARD_HEIGHT = 12;
+	private static final int GAMEBOARD_WIDTH = 10; 
+	private static final int GAMEBOARD_HEIGHT = 12; 
 
 	/**
 	 * Create a new game board.
