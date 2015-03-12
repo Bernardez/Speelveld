@@ -23,6 +23,7 @@ public class CoolGame extends Game {
 	
 	//TEST COMMIT
 	//TEST 2
+	//test 3
 
 	/**
 	 * Constructor.
