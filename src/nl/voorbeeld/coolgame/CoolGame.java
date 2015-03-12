@@ -20,6 +20,8 @@ public class CoolGame extends Game {
 	
 	/** The number of leafs eaten. */
 	private int score;
+	
+	//TEST COMMIT
 
 	/**
 	 * Constructor.
