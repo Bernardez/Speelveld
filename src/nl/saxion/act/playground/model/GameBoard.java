@@ -100,6 +100,7 @@ public abstract class GameBoard extends Observable {
 		return gameBoard[x][y];
 	}
 
+
 	/**
 	 * Call this to notify the game board view that it should redraw.
 	 * You should call this any time you are done changing things on the board
@@ -107,7 +108,7 @@ public abstract class GameBoard extends Observable {
 	 */
 	public void updateView() {
 		Log.d(TAG, "Updating game view");
-
+		
 		setChanged();
 		notifyObservers();
 	}
