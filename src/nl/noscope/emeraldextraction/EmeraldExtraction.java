@@ -16,7 +16,7 @@ public class EmeraldExtraction extends Game {
 	public EmeraldExtraction(MainActivity mainActivity) {
 		// Maakt een nieuw spelbord aan
 		super(new EmeraldExtractionBoard());
-		
+		// werkt dit
 		// Zet de activity in het spel
 		this.activity = mainActivity;
 		
