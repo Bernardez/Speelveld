@@ -2,10 +2,11 @@ package nl.voorbeeld.coolgame;
 
 import nl.saxion.act.playground.R;
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 /**
@@ -15,9 +16,9 @@ import android.widget.Toast;
  * @author Jan Stroet
  */
 public class MainActivity extends Activity {
+	@SuppressWarnings("unused")
 	private CoolGame game;
 	private CoolGameBoardView gameView;
-	private TextView scoreLabel;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -25,30 +26,46 @@ public class MainActivity extends Activity {
 		// Load main.xml
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
+		setFullScreen();
+		// DELETE DEZE REGEL
+
 		// Find some of the user interface elements
 		gameView = (CoolGameBoardView) findViewById(R.id.game);
-		scoreLabel = (TextView) findViewById(R.id.scoreTextView);
 
 		// Create the game object. This contains all data and functionality
 		// belonging to the game
 		game = new CoolGame(this);
 
-		// Do something when user clicks new game
-		registerNewGameButton();
-
 		// Tell user to start the game
 		Toast.makeText(getApplicationContext(), "Lets start",
 				Toast.LENGTH_SHORT).show();
+		
+		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
+		pauseButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Dialog pause = new Dialog(MainActivity.this);
+				pause.setContentView(R.layout.pausemenu);
+				pause.show();
+				
+			}
+		});
 	}
+	
+	
 
-	/**
-	 * Set a new score on the score label
-	 * 
-	 * @param newScore  The new score.
-	 */
-	public void updateScoreLabel(int newScore) {
-		scoreLabel.setText("Score: " + newScore);
+	private void setFullScreen() {
+		View decorView = getWindow().getDecorView();
+		// Hide both the navigation bar and the status bar.
+		// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and
+		// higher, but as
+		// a general rule, you should design your app to hide the status bar
+		// whenever you
+		// hide the navigation bar.
+		int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+				| View.SYSTEM_UI_FLAG_FULLSCREEN;
+		decorView.setSystemUiVisibility(uiOptions);
 	}
 
 	/**
@@ -56,23 +73,6 @@ public class MainActivity extends Activity {
 	 */
 	public CoolGameBoardView getGameBoardView() {
 		return gameView;
-	}
-
-	/**
-	 * Install a listener to the 'New game'-button so that it starts a new
-	 * game when clicked.
-	 */
-	private void registerNewGameButton() {
-		// Find the 'New Game'-button in the activity
-		final Button button1 = (Button) findViewById(R.id.newGameButton);
-		
-		// Add a click listener to the button that calls initNewGame()
-		button1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				game.initNewGame();
-			}
-		});
 	}
 
 }

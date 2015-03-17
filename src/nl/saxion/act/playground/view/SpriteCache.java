@@ -27,7 +27,7 @@ public class SpriteCache {
 	private Context context;
 	
 	/** Size of a bitmap tile */
-	private int tileSize = 20;
+	private int tileSize = 40;
 
 	/** Singleton accessor. Warning: not thread-safe! */
 	public static SpriteCache getInstance() {
