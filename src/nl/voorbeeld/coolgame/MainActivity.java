@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 		setFullScreen();
+		setArrowKeys();
 		// DELETE DEZE REGEL
 
 		// Find some of the user interface elements
@@ -53,7 +54,49 @@ public class MainActivity extends Activity {
 		});
 	}
 	
-	
+	public void setArrowKeys() {
+		ImageButton upArrow = (ImageButton) findViewById(R.id.uparrow);
+		upArrow.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Move Up",
+						Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		ImageButton downArrow = (ImageButton) findViewById(R.id.downarrow);
+		downArrow.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Move Down",
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+		ImageButton leftArrow = (ImageButton) findViewById(R.id.leftarrow);
+		leftArrow.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Move Left",
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+		ImageButton rightArrow = (ImageButton) findViewById(R.id.rightarrow);
+		rightArrow.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(getApplicationContext(), "Move Right",
+						Toast.LENGTH_SHORT).show();
+
+			}
+		});
+
+	}
 
 	private void setFullScreen() {
 		View decorView = getWindow().getDecorView();
