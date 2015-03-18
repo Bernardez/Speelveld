@@ -19,16 +19,16 @@
         android:src="@drawable/pausebutton" />
 
     <LinearLayout
-        android:layout_width="100dp"
-        android:layout_height="104dp"
+        android:layout_width="300dp"
+        android:layout_height="202dp"
         android:layout_gravity="bottom"
         android:orientation="vertical" >
 
         <ImageButton
             android:id="@+id/uparrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="right"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
             android:background="@null"
             android:scaleType="centerCrop"
             android:src="@drawable/uparrow" />
@@ -42,8 +42,8 @@
 
         <ImageButton
             android:id="@+id/leftarrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:background="@null"
             android:scaleType="centerCrop"
@@ -51,8 +51,8 @@
 
         <ImageButton
             android:id="@+id/downarrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:background="@null"
             android:scaleType="centerCrop"
@@ -60,8 +60,8 @@
 
         <ImageButton
             android:id="@+id/rightarrow"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="bottom"
             android:background="@null"
             android:scaleType="centerCrop"
