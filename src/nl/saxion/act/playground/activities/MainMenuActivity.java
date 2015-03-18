@@ -1,22 +1,37 @@
 package nl.saxion.act.playground.activities;
 
+import nl.noscope.data.DatabaseOperations;
+import nl.noscope.level.Level;
 import nl.saxion.act.playground.R;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
 public class MainMenuActivity extends Activity {
-
+	private static MainMenuActivity instance;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		instance = this;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_menu);
 
 		setupNewGameButton();
 		setFullScreen();
 
+		//Database operations
+				String player_name = "Henk";
+				int player_score = 100;
+				Context context = MainMenuActivity.getContext();
+				DatabaseOperations DB = new DatabaseOperations(context);
+				DB.addScore(DB, player_name, player_score);
+				
+				DB.addLevelPart(DB, 999, 1, 8, 10);
+				DB.addLevelPart(DB, 999, 1, 4, 3);
+				DB.addLevelPart(DB, 999, 1, 9, 5);
 	}
 
 	private void setupNewGameButton() {
@@ -47,4 +62,13 @@ public class MainMenuActivity extends Activity {
 		decorView.setSystemUiVisibility(uiOptions);
 	}
 
+	/** Get singleton instance of activity **/
+	public static MainMenuActivity getInstance() {
+	    return instance;
+	}
+
+	/** Returns context of this activity **/
+	public static Context getContext(){
+	    return instance.getApplicationContext();
+	}
 }

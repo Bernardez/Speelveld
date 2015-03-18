@@ -1,5 +1,14 @@
 package nl.voorbeeld.coolgame;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.Context;
+import android.util.Log;
+import nl.noscope.data.DatabaseOperations;
+import nl.noscope.level.Level;
+import nl.noscope.level.ObjectHelper;
+import nl.saxion.act.playground.activities.MainMenuActivity;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.voorbeeld.coolgame.objects.BovenRand;
@@ -45,7 +54,7 @@ public class CoolGame extends Game {
 
 		// Reset the game
 		initNewGame();
-
+		
 		// Tell the game board view which game board to show
 		CoolGameBoardView gameView = activity.getGameBoardView();
 		GameBoard gameBoard = getGameBoard();
@@ -53,6 +62,15 @@ public class CoolGame extends Game {
 
 		// Set size of the view to that of the game board
 		gameView.setFixedGridSize(gameBoard.getWidth(), gameBoard.getHeight());
+		
+//		Log.d("Load level", "Load level");
+//		this.context = activity.getApplicationContext();
+//		//Level level = null;
+//		//level = level.loadLevel(999, context);
+//		DatabaseOperations dob = new DatabaseOperations(context);
+//		level = dob.getLevel(999);
+//		Log.d("Load level", "Level Loaded");
+		
 	}
 
 	/**
@@ -63,6 +81,28 @@ public class CoolGame extends Game {
 
 		GameBoard board = getGameBoard();
 		board.removeAllObjects();
+		
+		
+		//Load level 1
+		Level level = null;
+		try {
+			DatabaseOperations DB = new DatabaseOperations(MainMenuActivity.getContext());
+			Log.d("CoolGame" , "Databaseoperations gemaakt!");
+			level = DB.getLevel(999);
+			Log.d("CoolGame" , "Level Geladen!");
+		}
+		catch (Exception ex) {
+			Log.d("CoolGame" , "databaseoperations exception!");
+		}
+		
+		if (level != null) {
+			Log.d("CoolGame" , "Level is niet null!");
+		}
+		List<int[]> lijst = level.getList();
+		
+		for (int[] blok : lijst) {
+			//board.addGameObject(ObjectHelper.getObject(blok[0]), blok[1], blok[2]);
+		}
 
 		// // Add a player object
 		board.addGameObject(new Miner(), 10, 11);

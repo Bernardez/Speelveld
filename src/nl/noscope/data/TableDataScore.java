@@ -2,14 +2,14 @@ package nl.noscope.data;
 
 import android.provider.BaseColumns;
 
-public class TableData {
+public class TableDataScore {
 	
-	public TableData()
+	public TableDataScore()
 	{
 		
 	}
 	
-	public static abstract class TableInfo implements BaseColumns
+	public static abstract class TableInfoScore implements BaseColumns
 	{
 		
 		public static final String PLAYER_NAME = "player_name";
