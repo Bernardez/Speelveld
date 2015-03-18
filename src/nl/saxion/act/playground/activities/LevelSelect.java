@@ -16,7 +16,7 @@ public class LevelSelect extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_level__select);
-		setupBackButton();
+//		setupBackButton();
 		setuplevel1Button();
 		setuplevel2Button();
 		setuplevel3Button();
@@ -189,20 +189,20 @@ public class LevelSelect extends Activity {
 			}
 		});
 	}
-	private void setupBackButton() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				startActivity(new Intent(LevelSelect.this, MainMenuActivity.class));
-
-			}
-		});
-	}
+//	private void setupBackButton() {
+//		ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
+//		levelButton.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				setFullScreen();
+//
+//				startActivity(new Intent(LevelSelect.this, MainMenuActivity.class));
+//
+//			}
+//		});
+//	}
 
 	private void setFullScreen() {
 		View decorView = getWindow().getDecorView();

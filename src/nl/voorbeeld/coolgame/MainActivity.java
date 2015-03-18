@@ -1,6 +1,9 @@
 package nl.voorbeeld.coolgame;
 
 import nl.saxion.act.playground.R;
+import nl.saxion.act.playground.model.GameBoard;
+import nl.saxion.act.playground.model.GameObject;
+import nl.voorbeeld.coolgame.objects.Miner;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -62,6 +65,9 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Move Up",
 						Toast.LENGTH_SHORT).show();
+			
+				
+				
 				
 			}
 		});

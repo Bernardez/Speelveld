@@ -20,7 +20,7 @@ public class Miner extends GameObject {
 	/** Called when the user touched this wombat. */
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-		
+
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
 
@@ -37,14 +37,14 @@ public class Miner extends GameObject {
 			if (objectAtNewPos instanceof Stone) {
 				return;
 			}
-			
+
 			if (objectAtNewPos instanceof Emerald) {
 				gameBoard.removeObject(objectAtNewPos);
-				
+
 			}
 			if (objectAtNewPos instanceof Sand) {
 				gameBoard.removeObject(objectAtNewPos);
-				
+
 			}
 		}
 
