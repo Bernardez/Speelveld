@@ -18,19 +18,10 @@ public class LevelSelect extends Activity {
 		Log.d("LevelSelect onCreate", "LevelSelect Activity Oncreate start");
 		super.onCreate(savedInstanceState);
 		Log.d("LevelSelect onCreate", "Before setContentView");
-		setContentView(R.layout.activity_level__select);
+		setContentView(R.layout.activity_level__select_copy);
 		Log.d("LevelSelect onCreate", "After setContentView");
 //		setupBackButton();
 		setupLevelButtons(R.id.level1);
-		setupLevelButtons(R.id.level2);
-		setupLevelButtons(R.id.level3);
-		setupLevelButtons(R.id.level4);
-		setupLevelButtons(R.id.level5);
-		setupLevelButtons(R.id.level6);
-		setupLevelButtons(R.id.level7);
-		setupLevelButtons(R.id.level8);
-		setupLevelButtons(R.id.level9);
-		setupLevelButtons(R.id.level10);
 		
 //		setuplevel1Button();
 //		setuplevel2Button();
