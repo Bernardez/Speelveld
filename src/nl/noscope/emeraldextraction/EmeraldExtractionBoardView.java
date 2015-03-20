@@ -1,22 +1,22 @@
-package nl.voorbeeld.coolgame;
+package nl.noscope.emeraldextraction;
 
+import nl.noscope.emeraldextraction.objects.BovenRand;
+import nl.noscope.emeraldextraction.objects.Emerald;
+import nl.noscope.emeraldextraction.objects.Iron;
+import nl.noscope.emeraldextraction.objects.LinkerBovenHoek;
+import nl.noscope.emeraldextraction.objects.LinkerOnderHoek;
+import nl.noscope.emeraldextraction.objects.LinkerRand;
+import nl.noscope.emeraldextraction.objects.Minecart;
+import nl.noscope.emeraldextraction.objects.Miner;
+import nl.noscope.emeraldextraction.objects.OnderRand;
+import nl.noscope.emeraldextraction.objects.RechterBovenHoek;
+import nl.noscope.emeraldextraction.objects.RechterOnderHoek;
+import nl.noscope.emeraldextraction.objects.RechterRand;
+import nl.noscope.emeraldextraction.objects.Sand;
+import nl.noscope.emeraldextraction.objects.Stone;
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.view.GameBoardView;
 import nl.saxion.act.playground.view.SpriteCache;
-import nl.voorbeeld.coolgame.objects.BovenRand;
-import nl.voorbeeld.coolgame.objects.Iron;
-import nl.voorbeeld.coolgame.objects.Emerald;
-import nl.voorbeeld.coolgame.objects.LinkerBovenHoek;
-import nl.voorbeeld.coolgame.objects.LinkerOnderHoek;
-import nl.voorbeeld.coolgame.objects.LinkerRand;
-import nl.voorbeeld.coolgame.objects.Minecart;
-import nl.voorbeeld.coolgame.objects.OnderRand;
-import nl.voorbeeld.coolgame.objects.RechterBovenHoek;
-import nl.voorbeeld.coolgame.objects.RechterOnderHoek;
-import nl.voorbeeld.coolgame.objects.RechterRand;
-import nl.voorbeeld.coolgame.objects.Sand;
-import nl.voorbeeld.coolgame.objects.Stone;
-import nl.voorbeeld.coolgame.objects.Miner;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -27,13 +27,13 @@ import android.util.Log;
  * @author Jan Stroet
  * @author Paul de Groot
  */
-public class CoolGameBoardView extends GameBoardView {
+public class EmeraldExtractionBoardView extends GameBoardView {
 	private static final String TAG = "GameView";
 
 	/**
 	 * Constructor.
 	 */
-	public CoolGameBoardView(Context context, AttributeSet attrs) {
+	public EmeraldExtractionBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initGameView();
 	}
@@ -41,7 +41,7 @@ public class CoolGameBoardView extends GameBoardView {
 	/**
 	 * Constructor.
 	 */
-	public CoolGameBoardView(Context context, AttributeSet attrs, int defStyle) {
+	public EmeraldExtractionBoardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initGameView();
 	}

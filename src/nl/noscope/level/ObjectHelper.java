@@ -1,7 +1,7 @@
 package nl.noscope.level;
 
+import nl.noscope.emeraldextraction.objects.*;
 import nl.saxion.act.playground.model.GameObject;
-import nl.voorbeeld.coolgame.objects.*;
 
 public class ObjectHelper {
 	public static GameObject getObject(int typeId) {

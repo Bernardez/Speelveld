@@ -1,4 +1,4 @@
-package nl.voorbeeld.coolgame.objects;
+package nl.noscope.emeraldextraction.objects;
 
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;

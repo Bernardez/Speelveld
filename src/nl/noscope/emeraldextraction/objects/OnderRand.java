@@ -1,4 +1,4 @@
-package nl.voorbeeld.coolgame.objects;
+package nl.noscope.emeraldextraction.objects;
 
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
@@ -10,13 +10,13 @@ import nl.saxion.act.playground.model.GameObject;
  * @author Paul de Groot
  * @author Jan Stroet
  */
-public class LinkerBovenHoek extends GameObject {
-	public static final String LEFTTOP_IMAGE = "lefttop";
+public class OnderRand extends GameObject {
+	public static final String BOTTOM_IMAGE = "bottom";
 
 	/** Returns the ImageId of the image to show. */
 	@Override
 	public String getImageId() {
-		return LEFTTOP_IMAGE;
+		return BOTTOM_IMAGE;
 	}
 
 	@Override

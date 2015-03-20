@@ -1,4 +1,4 @@
-package nl.voorbeeld.coolgame;
+package nl.noscope.emeraldextraction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,32 +6,32 @@ import java.util.List;
 import android.content.Context;
 import android.util.Log;
 import nl.noscope.data.DatabaseOperations;
+import nl.noscope.emeraldextraction.objects.BovenRand;
+import nl.noscope.emeraldextraction.objects.Emerald;
+import nl.noscope.emeraldextraction.objects.Iron;
+import nl.noscope.emeraldextraction.objects.LinkerBovenHoek;
+import nl.noscope.emeraldextraction.objects.LinkerOnderHoek;
+import nl.noscope.emeraldextraction.objects.LinkerRand;
+import nl.noscope.emeraldextraction.objects.Minecart;
+import nl.noscope.emeraldextraction.objects.Miner;
+import nl.noscope.emeraldextraction.objects.OnderRand;
+import nl.noscope.emeraldextraction.objects.RechterBovenHoek;
+import nl.noscope.emeraldextraction.objects.RechterOnderHoek;
+import nl.noscope.emeraldextraction.objects.RechterRand;
+import nl.noscope.emeraldextraction.objects.Sand;
+import nl.noscope.emeraldextraction.objects.Stone;
 import nl.noscope.level.Level;
 import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.activities.MainMenuActivity;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
-import nl.voorbeeld.coolgame.objects.BovenRand;
-import nl.voorbeeld.coolgame.objects.Iron;
-import nl.voorbeeld.coolgame.objects.Emerald;
-import nl.voorbeeld.coolgame.objects.LinkerBovenHoek;
-import nl.voorbeeld.coolgame.objects.LinkerOnderHoek;
-import nl.voorbeeld.coolgame.objects.LinkerRand;
-import nl.voorbeeld.coolgame.objects.Minecart;
-import nl.voorbeeld.coolgame.objects.OnderRand;
-import nl.voorbeeld.coolgame.objects.RechterBovenHoek;
-import nl.voorbeeld.coolgame.objects.RechterOnderHoek;
-import nl.voorbeeld.coolgame.objects.RechterRand;
-import nl.voorbeeld.coolgame.objects.Sand;
-import nl.voorbeeld.coolgame.objects.Stone;
-import nl.voorbeeld.coolgame.objects.Miner;
 
 /**
  * Awesome game for the Speelveld-project.
  * 
  * @author Paul de Groot
  */
-public class CoolGame extends Game {
+public class EmeraldExtraction extends Game {
 
 	/** Reference to the main activity, so some labels can be updated. */
 	@SuppressWarnings("unused")
@@ -45,9 +45,9 @@ public class CoolGame extends Game {
 	 * @param activity
 	 *            The main activity
 	 */
-	public CoolGame(MainActivity activity) {
+	public EmeraldExtraction(MainActivity activity) {
 		// Create a new game board and couple it to this game
-		super(new CoolGameBoard());
+		super(new EmeraldExtractionBoard());
 
 		// Store reference to the main activity
 		this.activity = activity;
@@ -56,7 +56,7 @@ public class CoolGame extends Game {
 		initNewGame();
 		
 		// Tell the game board view which game board to show
-		CoolGameBoardView gameView = activity.getGameBoardView();
+		EmeraldExtractionBoardView gameView = activity.getGameBoardView();
 		GameBoard gameBoard = getGameBoard();
 		gameView.setGameBoard(gameBoard);
 

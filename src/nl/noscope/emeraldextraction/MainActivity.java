@@ -1,9 +1,9 @@
-package nl.voorbeeld.coolgame;
+package nl.noscope.emeraldextraction;
 
+import nl.noscope.emeraldextraction.objects.Miner;
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
-import nl.voorbeeld.coolgame.objects.Miner;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -20,8 +20,8 @@ import android.widget.Toast;
  */
 public class MainActivity extends Activity {
 	@SuppressWarnings("unused")
-	private CoolGame game;
-	private CoolGameBoardView gameView;
+	private EmeraldExtraction game;
+	private EmeraldExtractionBoardView gameView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -34,11 +34,11 @@ public class MainActivity extends Activity {
 		// DELETE DEZE REGEL
 
 		// Find some of the user interface elements
-		gameView = (CoolGameBoardView) findViewById(R.id.game);
+		gameView = (EmeraldExtractionBoardView) findViewById(R.id.game);
 
 		// Create the game object. This contains all data and functionality
 		// belonging to the game
-		game = new CoolGame(this);
+		game = new EmeraldExtraction(this);
 
 		// Tell user to start the game
 		Toast.makeText(getApplicationContext(), "Lets start",
@@ -120,7 +120,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Returns the view on the game board.
 	 */
-	public CoolGameBoardView getGameBoardView() {
+	public EmeraldExtractionBoardView getGameBoardView() {
 		return gameView;
 	}
 

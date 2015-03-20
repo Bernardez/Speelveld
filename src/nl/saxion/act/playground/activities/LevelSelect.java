@@ -1,7 +1,7 @@
 package nl.saxion.act.playground.activities;
 
+import nl.noscope.emeraldextraction.MainActivity;
 import nl.saxion.act.playground.R;
-import nl.voorbeeld.coolgame.MainActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
