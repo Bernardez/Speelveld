@@ -31,9 +31,9 @@ public class Level {
 		this.score = score;
 	}
 	
-	public List<int[]> getList() {
-		return data;
-	}
+	//public List<int[]> getList() {
+	//	return data;
+	//}
 	
 	public Level loadLevel(int levelNumber, Context ctx) {
 		DatabaseOperations dop = new DatabaseOperations(ctx);

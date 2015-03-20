@@ -4,9 +4,9 @@ import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
 
 /**
- * The Wombat is our 'player object'. It should try to eat leafs.
+ * De miner is ons speler object, deze verplaatst zich dan ook steeds
  * 
- * @author Paul de Groot
+ * @author Boyd
  */
 public class Miner extends GameObject {
 	public static final String MINER_IMAGE = "miner";
@@ -17,23 +17,21 @@ public class Miner extends GameObject {
 		return MINER_IMAGE;
 	}
 
-	/** Called when the user touched this wombat. */
-	@Override
-	public void onTouched(GameBoard gameBoard) {
+	public void walkLeft(GameBoard gameBoard){
 
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
 
-		// If new position is over the edge of the board, do nothing
+		// Als de nieuwe positie naast het bord is doet hij niks
 		if (newPosX >= gameBoard.getWidth() - 1) {
 			return;
 		}
 
-		// Check if there is a object on the new position
+		// Kijk of er een object is op het nieuwe punt
 		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 		if (objectAtNewPos != null) {
 
-			// Miner can't move through rocks
+			// Miner kan niet door steen heen;
 			if (objectAtNewPos instanceof Stone) {
 				return;
 			}
@@ -48,8 +46,121 @@ public class Miner extends GameObject {
 			}
 		}
 
-		// Move wombat to the new position and redraw the app
+		// Verplaats de miner naar zijn nieuwe positie
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
 	}
+	
+	
+	public void walkRight(GameBoard gameBoard){
+
+		int newPosX = getPositionX() + 1;
+		int newPosY = getPositionY();
+
+		// Als de nieuwe positie naast het bord is doet hij niks
+		if (newPosX >= gameBoard.getWidth() - 1) {
+			return;
+		}
+
+		// Kijk of er een object is op het nieuwe punt
+		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+		if (objectAtNewPos != null) {
+
+			// Miner kan niet door steen heen;
+			if (objectAtNewPos instanceof Stone) {
+				return;
+			}
+
+			if (objectAtNewPos instanceof Emerald) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+			if (objectAtNewPos instanceof Sand) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+		}
+
+		// Verplaats de miner naar zijn nieuwe positie
+		gameBoard.moveObject(this, newPosX, newPosY);
+		gameBoard.updateView();
+	}
+	
+	public void walkUp(GameBoard gameBoard){
+
+		int newPosX = getPositionX();
+		int newPosY = getPositionY() - 1;
+
+		// Als de nieuwe positie naast het bord is doet hij niks
+		if (newPosX >= gameBoard.getWidth() - 1) {
+			return;
+		}
+
+		// Kijk of er een object is op het nieuwe punt
+		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+		if (objectAtNewPos != null) {
+
+			// Miner kan niet door steen heen;
+			if (objectAtNewPos instanceof Stone) {
+				return;
+			}
+
+			if (objectAtNewPos instanceof Emerald) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+			if (objectAtNewPos instanceof Sand) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+		}
+
+		// Verplaats de miner naar zijn nieuwe positie
+		gameBoard.moveObject(this, newPosX, newPosY);
+		gameBoard.updateView();
+	}
+
+	public void walkDown(GameBoard gameBoard) {
+
+		int newPosX = getPositionX();
+		int newPosY = getPositionY() + 1;
+
+		// Als de nieuwe positie naast het bord is doet hij niks
+		if (newPosX >= gameBoard.getWidth() - 1) {
+			return;
+		}
+
+		// Kijk of er een object is op het nieuwe punt
+		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+		if (objectAtNewPos != null) {
+
+			// Miner kan niet door steen heen;
+			if (objectAtNewPos instanceof Stone) {
+				return;
+			}
+
+			if (objectAtNewPos instanceof Emerald) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+			if (objectAtNewPos instanceof Sand) {
+				gameBoard.removeObject(objectAtNewPos);
+
+			}
+		}
+
+		// Verplaats de miner naar zijn nieuwe positie
+		gameBoard.moveObject(this, newPosX, newPosY);
+		gameBoard.updateView();
+		
+	}
+
+	@Override
+	public void onTouched(GameBoard gameBoard) {
+		// TODO Auto-generated method stub
+		
+	}
 }
+
+	
+

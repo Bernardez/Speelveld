@@ -18,4 +18,6 @@ public class Minecart extends GameObject {
 		// TODO Auto-generated method stub
 		
 	}
+
+
 }

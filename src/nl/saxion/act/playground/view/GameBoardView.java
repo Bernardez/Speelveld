@@ -199,9 +199,9 @@ public abstract class GameBoardView extends View implements Observer {
 			
 					// Determine the object clicked
 					GameObject object = board.getObject(mx, my);
-
-					// Call the listener
-					if (object != null) {
+					
+					//Call the listener
+					if (object != null){
 						object.onTouched(board);
 					} else {
 						board.onEmptyTileClicked(x, y);

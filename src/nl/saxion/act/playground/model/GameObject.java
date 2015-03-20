@@ -57,17 +57,20 @@ public abstract class GameObject {
 	 */
 	public abstract String getImageId();
 
+
+
 	/**
-	 * Called when the user touched this game object.
+	 * Called when the user touche this game object.
 	 * 
 	 * @param gameBoard  The game board this object is on. This is useful since you
 	 *                   can use it to lookup neighboring objects, etc.
 	 */
-	public abstract void onTouched(GameBoard gameBoard);
+public abstract void onTouched(GameBoard gameBoard);
 
-	/** Used by GameBoard.moveObject() */
+/** Used by GameBoard.moveObject() */
 	void setPosition(int positionX, int positionY) {
 		this.positionX = positionX;
 		this.positionY = positionY;
 	}
 }
+

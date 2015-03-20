@@ -22,22 +22,9 @@ public class Stone extends GameObject {
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-
-		int newPosX = getPositionX();
-		int newPosY = getPositionY() + 1;
-
-		// If new position is over the edge of the board, do nothing
-		if (newPosX >= gameBoard.getWidth() - 1) {
-			return;
-		}
-
-		// Check if there is a object on the new position
-		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
-		if (objectAtNewPos == null) {
-			gameBoard.moveObject(this, newPosX, newPosY);
-			gameBoard.updateView();
-
-		}
-
+		// TODO Auto-generated method stub
+		
 	}
+
+	
 }

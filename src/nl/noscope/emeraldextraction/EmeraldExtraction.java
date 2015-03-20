@@ -27,9 +27,9 @@ import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
 
 /**
- * Awesome game for the Speelveld-project.
+ * Emerald Extraction
  * 
- * @author Paul de Groot
+ * @author Boyd
  */
 public class EmeraldExtraction extends Game {
 
@@ -37,8 +37,12 @@ public class EmeraldExtraction extends Game {
 	@SuppressWarnings("unused")
 	private MainActivity activity;
 
-	/** The number of leafs eaten. */
+	/** Maakt een miner aan*/
+	private Miner miner;
 
+	/** Maakt een board aan */
+	GameBoard board;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -77,9 +81,11 @@ public class EmeraldExtraction extends Game {
 	 * Starts a new game. Resets the score and places all objects in the right
 	 * place.
 	 */
+
+	
 	public void initNewGame() {
 
-		GameBoard board = getGameBoard();
+		board = getGameBoard();
 		board.removeAllObjects();
 		
 		
@@ -98,14 +104,10 @@ public class EmeraldExtraction extends Game {
 		if (level != null) {
 			Log.d("CoolGame" , "Level is niet null!");
 		}
-		List<int[]> lijst = level.getList();
-		
-		for (int[] blok : lijst) {
-			//board.addGameObject(ObjectHelper.getObject(blok[0]), blok[1], blok[2]);
-		}
 
 		// // Add a player object
-		board.addGameObject(new Miner(), 10, 11);
+		miner = new Miner();
+		board.addGameObject(miner, 10, 11);
 
 		// // Add some Stones
 		board.addGameObject(new Stone(), 8, 10);
@@ -836,6 +838,28 @@ public class EmeraldExtraction extends Game {
 		board.addGameObject(new RechterRand(), 34, 18);
 
 		// Redraw the game view
+		board.updateView();
+		
+		 
+	}
+	
+	public void moveMinerUp(){
+		miner.walkUp(board);
+		board.updateView();
+	}
+	
+	public void moveMinerDown(){
+		miner.walkDown(board);
+		board.updateView();
+	}
+	
+	public void moveMinerLeft(){
+		miner.walkLeft(board);
+		board.updateView();
+	}
+	
+	public void moveMinerRight(){
+		miner.walkRight(board);
 		board.updateView();
 	}
 

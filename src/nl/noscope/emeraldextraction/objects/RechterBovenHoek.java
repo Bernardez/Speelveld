@@ -21,6 +21,9 @@ public class RechterBovenHoek extends GameObject {
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
-
+		// TODO Auto-generated method stub
+		
 	}
+
+
 }

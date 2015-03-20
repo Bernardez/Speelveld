@@ -65,10 +65,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Move Up",
 						Toast.LENGTH_SHORT).show();
-			
-				
-				
-				
+					game.moveMinerUp();
 			}
 		});
 		ImageButton downArrow = (ImageButton) findViewById(R.id.downarrow);
@@ -78,7 +75,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Move Down",
 						Toast.LENGTH_SHORT).show();
-
+					game.moveMinerDown();
 			}
 		});
 		ImageButton leftArrow = (ImageButton) findViewById(R.id.leftarrow);
@@ -88,7 +85,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Move Left",
 						Toast.LENGTH_SHORT).show();
-
+					game.moveMinerLeft();
 			}
 		});
 		ImageButton rightArrow = (ImageButton) findViewById(R.id.rightarrow);
@@ -98,6 +95,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Toast.makeText(getApplicationContext(), "Move Right",
 						Toast.LENGTH_SHORT).show();
+					game.moveMinerRight();
 
 			}
 		});
