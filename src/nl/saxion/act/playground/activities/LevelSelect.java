@@ -5,6 +5,7 @@ import nl.saxion.act.playground.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,21 +15,52 @@ public class LevelSelect extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d("LevelSelect onCreate", "LevelSelect Activity Oncreate start");
 		super.onCreate(savedInstanceState);
+		Log.d("LevelSelect onCreate", "Before setContentView");
 		setContentView(R.layout.activity_level__select);
+		Log.d("LevelSelect onCreate", "After setContentView");
 //		setupBackButton();
-		setuplevel1Button();
-		setuplevel2Button();
-		setuplevel3Button();
-		setuplevel4Button();
-		setuplevel5Button();
-		setuplevel6Button();
-		setuplevel7Button();
-		setuplevel8Button();
-		setuplevel9Button();
-		setuplevel10Button();
+		setupLevelButtons(R.id.level1);
+		setupLevelButtons(R.id.level2);
+		setupLevelButtons(R.id.level3);
+		setupLevelButtons(R.id.level4);
+		setupLevelButtons(R.id.level5);
+		setupLevelButtons(R.id.level6);
+		setupLevelButtons(R.id.level7);
+		setupLevelButtons(R.id.level8);
+		setupLevelButtons(R.id.level9);
+		setupLevelButtons(R.id.level10);
+		
+//		setuplevel1Button();
+//		setuplevel2Button();
+//		setuplevel3Button();
+//		setuplevel4Button();
+//		setuplevel5Button();
+//		setuplevel6Button();
+//		setuplevel7Button();
+//		setuplevel8Button();
+//		setuplevel9Button();
+//		setuplevel10Button();
 		setFullScreen();
 		
+		Log.d("LevelSelect onCreate", "LevelSelect Activity Oncreate end");
+	}
+	
+	private void setupLevelButtons(int id) {
+		ImageButton newGameButton = (ImageButton) findViewById(id);
+		newGameButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				setFullScreen();
+				Log.d("setuplevel1button", "Set full screen");
+
+				startActivity(new Intent(LevelSelect.this, MainActivity.class));
+				Log.d("setuplevel1button", "start activity");
+			}
+		});
 	}
 
 	private void setuplevel1Button() {
@@ -39,9 +71,10 @@ public class LevelSelect extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				setFullScreen();
+				Log.d("setuplevel1button", "Set full screen");
 
 				startActivity(new Intent(LevelSelect.this, MainActivity.class));
-
+				Log.d("setuplevel1button", "start activity");
 			}
 		});
 	}
