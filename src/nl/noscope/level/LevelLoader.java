@@ -15,17 +15,43 @@ public class LevelLoader {
 	
 	public LevelLoader(int levelNumber) {
 		this.levelNumber = levelNumber;
+		loadLevel();
 	}
 	
 	public LevelLoader(int levelNumber, int time) {
 		this.levelNumber = levelNumber;
 		this.time = time;
+		loadLevel();
 	}
 	
 	public LevelLoader(int levelNumber, int time, int score) {
 		this.levelNumber = levelNumber;
 		this.time = time;
 		this.score = score;
+		loadLevel();
+	}
+	
+	public void loadLevel() {
+		if (levelNumber == 1) {
+			Level1 level1 = new Level1();
+			this.data = level1.getData();
+		}
+	}
+	
+	public List<int[]> getData() {
+		return this.data;
+	}
+	
+	public int getLevelNumber() {
+		return this.levelNumber;
+	}
+	
+	public int getTime() {
+		return this.time;
+	}
+	
+	public int getScore() {
+		return this.score;
 	}
 	
 	//public List<int[]> getList() {
