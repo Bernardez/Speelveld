@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import nl.noscope.data.DatabaseOperations;
 import nl.noscope.emeraldextraction.objects.BovenRand;
@@ -55,9 +56,12 @@ public class EmeraldExtraction extends Game {
 
 		// Store reference to the main activity
 		this.activity = activity;
+		
+		Intent intent = this.activity.getIntent();
+		int levelSelection = intent.getFlags();
 
 		// Reset the game
-		initNewGame(activity);
+		initNewGame(activity, levelSelection);
 		
 		// Tell the game board view which game board to show
 		EmeraldExtractionBoardView gameView = activity.getGameBoardView();
@@ -83,14 +87,14 @@ public class EmeraldExtraction extends Game {
 	 */
 
 	
-	public void initNewGame(MainActivity activity) {
+	public void initNewGame(MainActivity activity, int levelSelection) {
 
 		board = getGameBoard();
 		board.removeAllObjects();
 		
 		//Load level based on level number
-		
-		LevelLoader levelLoader = new LevelLoader(1, 500, 1000);
+		Log.d("EmeraldExtrection", "Loading level" + levelSelection);
+		LevelLoader levelLoader = new LevelLoader(levelSelection, 500, 1000);
 		
 		List<int[]> dataLevel1 = levelLoader.getData();
 		

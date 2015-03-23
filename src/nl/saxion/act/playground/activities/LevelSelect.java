@@ -57,7 +57,10 @@ public class LevelSelect extends Activity {
 				setFullScreen();
 				Log.d("setuplevel1button", "Set full screen");
 
-				startActivity(new Intent(LevelSelect.this, MainActivity.class));
+				
+				Intent intent = new Intent(LevelSelect.this, MainActivity.class);
+				intent.addFlags(1);
+				startActivity(intent);
 				Log.d("setuplevel1button", "start activity");
 			}
 		});
