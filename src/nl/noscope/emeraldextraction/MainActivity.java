@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
 		Toast.makeText(getApplicationContext(), "Lets start",
 				Toast.LENGTH_SHORT).show();
 		
+		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		pauseButton.setOnClickListener(new OnClickListener() {
 			
@@ -58,6 +59,7 @@ public class MainActivity extends Activity {
 		});
 	}
 	
+	// Create a set of On screen Navigation buttons
 	public void setArrowKeys() {
 		ImageButton upArrow = (ImageButton) findViewById(R.id.uparrow);
 		upArrow.setOnClickListener(new OnClickListener() {

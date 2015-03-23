@@ -35,8 +35,8 @@ public class Level {
 	//	return data;
 	//}
 	
-	public Level loadLevel(int levelNumber, Context ctx) {
-		DatabaseOperations dop = new DatabaseOperations(ctx);
-		return dop.getLevel(levelNumber);
-	}
+//	public Level loadLevel(int levelNumber, Context ctx) {
+//		DatabaseOperations dop = new DatabaseOperations(ctx);
+//		return dop.getLevel(levelNumber);
+//	}
 }

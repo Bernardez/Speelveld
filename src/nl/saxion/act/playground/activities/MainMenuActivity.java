@@ -31,9 +31,6 @@ public class MainMenuActivity extends Activity {
 				DatabaseOperations DB = new DatabaseOperations(context);
 				DB.addScore(DB, player_name, player_score);
 				
-				DB.addLevelPart(DB, 999, 1, 8, 10);
-				DB.addLevelPart(DB, 999, 1, 4, 3);
-				DB.addLevelPart(DB, 999, 1, 9, 5);
 	}
 
 	private void setupNewGameButton() {

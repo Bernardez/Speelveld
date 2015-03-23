@@ -57,7 +57,7 @@ public class EmeraldExtraction extends Game {
 		this.activity = activity;
 
 		// Reset the game
-		initNewGame();
+		initNewGame(activity);
 		
 		// Tell the game board view which game board to show
 		EmeraldExtractionBoardView gameView = activity.getGameBoardView();
@@ -83,27 +83,14 @@ public class EmeraldExtraction extends Game {
 	 */
 
 	
-	public void initNewGame() {
+	public void initNewGame(MainActivity activity) {
 
 		board = getGameBoard();
 		board.removeAllObjects();
 		
 		
 		//Load level 1
-		Level level = null;
-		try {
-			DatabaseOperations DB = new DatabaseOperations(MainMenuActivity.getContext());
-			Log.d("CoolGame" , "Databaseoperations gemaakt!");
-			level = DB.getLevel(999);
-			Log.d("CoolGame" , "Level Geladen!");
-		}
-		catch (Exception ex) {
-			Log.d("CoolGame" , "databaseoperations exception!");
-		}
 		
-		if (level != null) {
-			Log.d("CoolGame" , "Level is niet null!");
-		}
 
 		// // Add a player object
 		miner = new Miner();
