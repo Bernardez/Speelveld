@@ -10,7 +10,7 @@ import java.util.List;
 
 import nl.noscope.data.TableDataLevel.TableInfoLevel;
 import nl.noscope.data.TableDataScore.TableInfoScore;
-import nl.noscope.level.Level;
+import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.model.GameObject;
 import android.content.ContentValues;

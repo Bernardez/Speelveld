@@ -20,7 +20,7 @@ import nl.noscope.emeraldextraction.objects.RechterOnderHoek;
 import nl.noscope.emeraldextraction.objects.RechterRand;
 import nl.noscope.emeraldextraction.objects.Sand;
 import nl.noscope.emeraldextraction.objects.Stone;
-import nl.noscope.level.Level;
+import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.activities.MainMenuActivity;
 import nl.saxion.act.playground.model.Game;

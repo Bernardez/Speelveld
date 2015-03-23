@@ -7,25 +7,22 @@ import android.content.Context;
 import nl.noscope.data.DatabaseOperations;
 import nl.saxion.act.playground.model.GameObject;
 
-public class Level {
+public class LevelLoader {
 	private List<int[]> data = new ArrayList<int[]>();
 	private int levelNumber;
 	private int time;
 	private int score;
 	
-	public Level(List<int[]> data, int levelNumber) {
-		this.data = data;
+	public LevelLoader(int levelNumber) {
 		this.levelNumber = levelNumber;
 	}
 	
-	public Level(List<int[]> data, int levelNumber, int time) {
-		this.data = data;
+	public LevelLoader(int levelNumber, int time) {
 		this.levelNumber = levelNumber;
 		this.time = time;
 	}
 	
-	public Level(List<int[]> data, int levelNumber, int time, int score) {
-		this.data = data;
+	public LevelLoader(int levelNumber, int time, int score) {
 		this.levelNumber = levelNumber;
 		this.time = time;
 		this.score = score;
