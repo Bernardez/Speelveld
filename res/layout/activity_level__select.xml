@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:gravity="center"
-        android:paddingTop="300dp" >
+        android:paddingTop="70dp" >
 
         <ImageButton
             android:id="@+id/level1"
@@ -64,7 +64,8 @@
         android:id="@+id/tableRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center" >
+        android:gravity="center"
+        android:paddingTop="10dp" >
 
         <ImageButton
             android:id="@+id/level6"

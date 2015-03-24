@@ -17,7 +17,7 @@ public class Miner extends GameObject {
 		return MINER_IMAGE;
 	}
 
-	public void walkLeft(GameBoard gameBoard){
+	public void walkLeft(GameBoard gameBoard) {
 
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
@@ -35,6 +35,9 @@ public class Miner extends GameObject {
 			if (objectAtNewPos instanceof Stone) {
 				return;
 			}
+			if (objectAtNewPos instanceof Iron) {
+				return;
+			}
 
 			if (objectAtNewPos instanceof Emerald) {
 				gameBoard.removeObject(objectAtNewPos);
@@ -50,9 +53,8 @@ public class Miner extends GameObject {
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
 	}
-	
-	
-	public void walkRight(GameBoard gameBoard){
+
+	public void walkRight(GameBoard gameBoard) {
 
 		int newPosX = getPositionX() + 1;
 		int newPosY = getPositionY();
@@ -71,6 +73,10 @@ public class Miner extends GameObject {
 				return;
 			}
 
+			if (objectAtNewPos instanceof Iron) {
+				return;
+			}
+
 			if (objectAtNewPos instanceof Emerald) {
 				gameBoard.removeObject(objectAtNewPos);
 
@@ -85,8 +91,8 @@ public class Miner extends GameObject {
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
 	}
-	
-	public void walkUp(GameBoard gameBoard){
+
+	public void walkUp(GameBoard gameBoard) {
 
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() - 1;
@@ -105,6 +111,9 @@ public class Miner extends GameObject {
 				return;
 			}
 
+			if (objectAtNewPos instanceof Iron) {
+				return;
+			}
 			if (objectAtNewPos instanceof Emerald) {
 				gameBoard.removeObject(objectAtNewPos);
 
@@ -138,6 +147,9 @@ public class Miner extends GameObject {
 			if (objectAtNewPos instanceof Stone) {
 				return;
 			}
+			if (objectAtNewPos instanceof Iron) {
+				return;
+			}
 
 			if (objectAtNewPos instanceof Emerald) {
 				gameBoard.removeObject(objectAtNewPos);
@@ -152,15 +164,12 @@ public class Miner extends GameObject {
 		// Verplaats de miner naar zijn nieuwe positie
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
-		
+
 	}
 
 	@Override
 	public void onTouched(GameBoard gameBoard) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
-
-	
-
