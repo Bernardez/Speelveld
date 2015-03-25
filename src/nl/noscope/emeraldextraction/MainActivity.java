@@ -6,11 +6,13 @@ import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
 import android.app.Activity;
 import android.app.Dialog;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -32,7 +34,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		setFullScreen();
 		setArrowKeys();
-		// DELETE DEZE REGEL
+				// DELETE DEZE REGEL
 
 		// Find some of the user interface elements
 		gameView = (EmeraldExtractionBoardView) findViewById(R.id.game);
@@ -42,8 +44,8 @@ public class MainActivity extends Activity {
 		game = new EmeraldExtraction(this);
 
 		// Tell user to start the game
-		Toast.makeText(getApplicationContext(), "Lets start",
-				Toast.LENGTH_SHORT).show();
+//		Toast.makeText(getApplicationContext(), "Lets start",
+//				Toast.LENGTH_SHORT).show();
 		
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
@@ -53,7 +55,9 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				Dialog pause = new Dialog(MainActivity.this);
 				pause.setContentView(R.layout.pausemenu);
+				onPause();
 				pause.show();
+				
 				
 			}
 		});
@@ -66,8 +70,8 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Move Up",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), "Move Up",
+//						Toast.LENGTH_SHORT).show();
 					game.moveMinerUp();
 			}
 		});
@@ -76,8 +80,8 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Move Down",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), "Move Down",
+//						Toast.LENGTH_SHORT).show();
 					game.moveMinerDown();
 			}
 		});
@@ -86,8 +90,8 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Move Left",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), "Move Left",
+//						Toast.LENGTH_SHORT).show();
 					game.moveMinerLeft();
 			}
 		});
@@ -96,8 +100,8 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Move Right",
-						Toast.LENGTH_SHORT).show();
+//				Toast.makeText(getApplicationContext(), "Move Right",
+//						Toast.LENGTH_SHORT).show();
 					game.moveMinerRight();
 
 			}

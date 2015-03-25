@@ -1,4 +1,12 @@
 package nl.noscope.level;
+// ASCII ART
+/**
+ * ##########################
+ * #     r     r     r   d  #
+ * #   wwwwwwww  
+ * #        w
+ * #        w 
+ */
 
 import java.util.ArrayList;
 import java.util.List;
