@@ -60,8 +60,8 @@ public class LevelSelect extends Activity {
 				
 				Intent intent = new Intent(LevelSelect.this, MainActivity.class);
 				intent.putExtra("LEVEL_ID", levelId);
+				Log.d("setuplevel1button", "start activity with intent level id: "  + levelId);
 				startActivity(intent);
-				Log.d("setuplevel1button", "start activity");
 			}
 		});
 	}

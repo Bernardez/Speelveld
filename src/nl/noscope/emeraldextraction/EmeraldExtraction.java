@@ -77,6 +77,8 @@ public class EmeraldExtraction extends Game {
 		
 		Intent intent = this.activity.getIntent();
 		int levelSelection = intent.getIntExtra("LEVEL_ID", 1);
+		Log.d("EmeraldExtracion", "Level id intent = " + intent.getIntExtra("LEVEL_ID", 1));
+		Log.d("EmeraldExtracion", "Level id levelSelection int = " + levelSelection);
 
 		// Reset the game
 		initNewGame(activity, levelSelection);
@@ -119,7 +121,14 @@ public class EmeraldExtraction extends Game {
 		//open a level with the level number
 		
         Log.d("EmeraldExtrection", "bevore create inputfile" + levelSelection);
-        InputStream is = activity.getApplicationContext().getResources().openRawResource(R.raw.level1);
+        InputStream is = null;
+        
+        switch (levelSelection) {
+        case 1: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level1);
+        	break;
+        case 2: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level2);
+        	break;
+        }
         Log.d("EmeraldExtrection", "after create inputfile");
 
         String fileLevel = "";
