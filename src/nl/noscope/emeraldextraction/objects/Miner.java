@@ -54,10 +54,12 @@ public class Miner extends GameObject {
 
 	private void StateCheck(int newPosX, int newPosY, GameBoard gameBoard) {
 		// Als de nieuwe positie naast het bord is doet hij niks
-		if (newPosX >= gameBoard.getWidth() - 1) {
+		if (newPosX >= gameBoard.getWidth() - 1 || newPosX == 0) {
+			return;
+		} else if (newPosY >= gameBoard.getHeight() - 1 || newPosY == 0){
 			return;
 		}
-
+		
 		// Kijk of er een object is op het nieuwe punt
 		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 		if (objectAtNewPos != null) {
