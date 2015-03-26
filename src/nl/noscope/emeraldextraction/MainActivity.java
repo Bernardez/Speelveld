@@ -7,10 +7,13 @@ import nl.saxion.act.playground.model.GameObject;
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,10 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		setFullScreen();
 		setArrowKeys();
+<<<<<<< Updated upstream
+=======
+		// DELETE DEZE REGEL
+>>>>>>> Stashed changes
 
 		// Find some of the user interface elements
 		gameView = (EmeraldExtractionBoardView) findViewById(R.id.game);
@@ -42,24 +49,39 @@ public class MainActivity extends Activity {
 		// belonging to the game
 		game = new EmeraldExtraction(this);
 
+<<<<<<< Updated upstream
 	
 		
+=======
+		// Tell user to start the game
+		// Toast.makeText(getApplicationContext(), "Lets start",
+		// Toast.LENGTH_SHORT).show();
+
+>>>>>>> Stashed changes
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		pauseButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
+				;
+
 				Dialog pause = new Dialog(MainActivity.this);
+				pause.requestWindowFeature(Window.FEATURE_NO_TITLE);
+				pause.getWindow().setBackgroundDrawable(
+						new ColorDrawable(android.graphics.Color.TRANSPARENT));
 				pause.setContentView(R.layout.pausemenu);
+				WindowManager.LayoutParams lp = pause.getWindow()
+						.getAttributes();
+				lp.dimAmount = 0.7f;
+				pause.getWindow().setAttributes(lp);
 				onPause();
 				pause.show();
-				
-				
+
 			}
 		});
 	}
-	
+
 	// Create a set of On screen Navigation buttons
 	public void setArrowKeys() {
 		ImageButton upArrow = (ImageButton) findViewById(R.id.uparrow);
@@ -67,9 +89,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Toast.makeText(getApplicationContext(), "Move Up",
-//						Toast.LENGTH_SHORT).show();
-					game.moveMinerUp();
+				game.moveMinerUp();
 			}
 		});
 		ImageButton downArrow = (ImageButton) findViewById(R.id.downarrow);
@@ -77,9 +97,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Toast.makeText(getApplicationContext(), "Move Down",
-//						Toast.LENGTH_SHORT).show();
-					game.moveMinerDown();
+				game.moveMinerDown();
 			}
 		});
 		ImageButton leftArrow = (ImageButton) findViewById(R.id.leftarrow);
@@ -87,9 +105,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Toast.makeText(getApplicationContext(), "Move Left",
-//						Toast.LENGTH_SHORT).show();
-					game.moveMinerLeft();
+				game.moveMinerLeft();
 			}
 		});
 		ImageButton rightArrow = (ImageButton) findViewById(R.id.rightarrow);
@@ -97,9 +113,7 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-//				Toast.makeText(getApplicationContext(), "Move Right",
-//						Toast.LENGTH_SHORT).show();
-					game.moveMinerRight();
+				game.moveMinerRight();
 
 			}
 		});
@@ -125,25 +139,25 @@ public class MainActivity extends Activity {
 	public EmeraldExtractionBoardView getGameBoardView() {
 		return gameView;
 	}
-	
+
 	@Override
-    protected void onDestroy() {
-    super.onDestroy();
+	protected void onDestroy() {
+		super.onDestroy();
 
-    unbindDrawables(findViewById(R.id.game));
-    System.gc();
-    }
+		unbindDrawables(findViewById(R.id.game));
+		System.gc();
+	}
 
-    private void unbindDrawables(View view) {
-        if (view.getBackground() != null) {
-        view.getBackground().setCallback(null);
-        }
-        if (view instanceof ViewGroup) {
-            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
-            unbindDrawables(((ViewGroup) view).getChildAt(i));
-            }
-        ((ViewGroup) view).removeAllViews();
-        }
-    }
+	private void unbindDrawables(View view) {
+		if (view.getBackground() != null) {
+			view.getBackground().setCallback(null);
+		}
+		if (view instanceof ViewGroup) {
+			for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+				unbindDrawables(((ViewGroup) view).getChildAt(i));
+			}
+			((ViewGroup) view).removeAllViews();
+		}
+	}
 
 }
