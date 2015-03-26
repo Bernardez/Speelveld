@@ -50,6 +50,9 @@ public class EmeraldExtraction extends Game {
 
 	/** Maakt een miner aan*/
 	private Miner miner;
+	
+	/** Maakt een emerald aan	 */
+	private Emerald emerald;
 
 	/** Maakt een board aan */
 	GameBoard board;

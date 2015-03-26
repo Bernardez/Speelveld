@@ -10,6 +10,7 @@ import nl.saxion.act.playground.model.GameObject;
  */
 public class Miner extends GameObject {
 	public static final String MINER_IMAGE = "miner";
+	
 
 	/** Returns the ImageId of the image to show. */
 	@Override
@@ -22,7 +23,7 @@ public class Miner extends GameObject {
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
 
-		StateCheck(newPosX, newPosY, gameBoard);
+		StateCheck(newPosX, newPosY, gameBoard, 1);
 		
 	}
 
@@ -30,29 +31,27 @@ public class Miner extends GameObject {
 
 		int newPosX = getPositionX() + 1;
 		int newPosY = getPositionY();
-
-		StateCheck(newPosX, newPosY, gameBoard);
+		StateCheck(newPosX, newPosY, gameBoard, 2);
 	}
 
 	public void walkUp(GameBoard gameBoard) {
 
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() - 1;
-		
 
-		StateCheck(newPosX, newPosY, gameBoard);
+		StateCheck(newPosX, newPosY, gameBoard, 3);
 	}
 
 	public void walkDown(GameBoard gameBoard) {
 
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() + 1;
-
-		StateCheck(newPosX, newPosY, gameBoard);
+		
+		StateCheck(newPosX, newPosY, gameBoard, 4);
 	
 	}
 
-	private void StateCheck(int newPosX, int newPosY, GameBoard gameBoard) {
+	private void StateCheck(int newPosX, int newPosY, GameBoard gameBoard, int direction) {
 		// Als de nieuwe positie naast het bord is doet hij niks
 		if (newPosX >= gameBoard.getWidth() - 1 || newPosX == 0) {
 			return;
@@ -76,8 +75,9 @@ public class Miner extends GameObject {
 			}
 
 			if (objectAtNewPos instanceof Emerald) {
-				gameBoard.removeObject(objectAtNewPos);
-
+				gameBoard.moveObject(objectAtNewPos, newPosX + 1, newPosY);
+					
+			
 			}
 			if (objectAtNewPos instanceof Sand) {
 				gameBoard.removeObject(objectAtNewPos);

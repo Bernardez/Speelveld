@@ -1,5 +1,6 @@
 package nl.noscope.emeraldextraction.objects;
 
+import android.widget.Toast;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
 /**
@@ -18,6 +19,25 @@ public class Emerald extends GameObject {
 		return EMERALD_IMAGE;
 	}
 
+	
+	public void gravityCheck(GameBoard gameBoard){
+		
+		int newPosX = getPositionX();
+		int newPosY = getPositionY() + 1;
+		
+		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+		if (objectAtNewPos == null) {
+			gameBoard.moveObject(this, newPosX, newPosY);
+		} else if (objectAtNewPos instanceof Minecart) {
+			gameBoard.removeObject(objectAtNewPos);
+		} else {
+			return;
+		}
+		
+		gameBoard.updateView();
+	}
+	
+	
 	@Override
 	public void onTouched(GameBoard gameBoard) {
 		// TODO Auto-generated method stub
