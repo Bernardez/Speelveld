@@ -1,10 +1,19 @@
 package nl.noscope.emeraldextraction;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.util.Log;
 import nl.noscope.data.DatabaseOperations;
 import nl.noscope.emeraldextraction.objects.BovenRand;
@@ -23,6 +32,7 @@ import nl.noscope.emeraldextraction.objects.Sand;
 import nl.noscope.emeraldextraction.objects.Stone;
 import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
+import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.activities.MainMenuActivity;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
@@ -44,6 +54,8 @@ public class EmeraldExtraction extends Game {
 	/** Maakt een board aan */
 	GameBoard board;
 	
+	private Resources resources;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -57,8 +69,11 @@ public class EmeraldExtraction extends Game {
 		// Store reference to the main activity
 		this.activity = activity;
 		
+		//get the application's resources  
+        resources = activity.getApplicationContext().getResources();  
+		
 		Intent intent = this.activity.getIntent();
-		int levelSelection = intent.getFlags();
+		int levelSelection = intent.getIntExtra("LEVEL_ID", 1);
 
 		// Reset the game
 		initNewGame(activity, levelSelection);
@@ -96,24 +111,77 @@ public class EmeraldExtraction extends Game {
 		Log.d("EmeraldExtrection", "Loading level" + levelSelection);
 		LevelLoader levelLoader = new LevelLoader(levelSelection, 500, 1000);
 		
-		List<int[]> dataLevel1 = levelLoader.getData();
-		
 		miner = new Miner();
-		for (int[] data : dataLevel1) {
-			if (data[0] != 14) {
-				board.addGameObject(ObjectHelper.getObject(data[0]), data[1], data[2]);
-			}
-			else {
-				board.addGameObject(miner, data[1], data[2]);
-			}
+		
+		//open a level with the level number
+		
+        Log.d("EmeraldExtrection", "bevore create inputfile" + levelSelection);
+        InputStream is = activity.getApplicationContext().getResources().openRawResource(R.raw.level1);
+        Log.d("EmeraldExtrection", "after create inputfile");
+
+        String fileLevel = "";
+        try {
+			fileLevel = convertStreamToString(is);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Log.d("EmeraldExtraction", "convertStreamToString Exception");
+		}
+        
+        Scanner in = new Scanner(fileLevel);
+        
+        int levelRow = 0;
+        while (in.hasNext()) {
+        	String line = in.nextLine();
+        	Log.d("EmeraldExtraction", "Level regel ingelezen: " + line);
+        	if (line.startsWith("*")){
+        	}
+        	else {
+        		char[] levelColumns = line.toCharArray();
+        		for (int i = 0; i < levelColumns.length; i++) {
+        			if (levelColumns[i] == 'n') {
+        				board.addGameObject(miner, i, levelRow);
+        			}
+        			else {
+        				board.addGameObject(ObjectHelper.getObject(levelColumns[i]), i, levelRow);
+        			}
+        		}
+        		levelRow++;
+        	}
+        }
+		
+		for (int i = 0; i <= 28; i++) {
+			//read the message into a string variable and print it.
 			
 		}
+		
+		System.out.println(is);
+		
+//		for (int[] data : dataLevel1) {
+//			if (data[0] != 14) {
+//				board.addGameObject(ObjectHelper.getObject(data[0]), data[1], data[2]);
+//			}
+//			else {
+//				board.addGameObject(miner, data[1], data[2]);
+//			}
+//			
+//		}
 		
 		// Redraw the game view
 		board.updateView();
 		
 		 
 	}
+	
+	public static String convertStreamToString(InputStream is) throws Exception {
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+	    StringBuilder sb = new StringBuilder();
+	    String line = null;
+	    while ((line = reader.readLine()) != null) {
+	      sb.append(line + "\n");
+	    }
+	    is.close();
+	    return sb.toString();
+	  }
 	
 	public void moveMinerUp(){
 		miner.walkUp(board);

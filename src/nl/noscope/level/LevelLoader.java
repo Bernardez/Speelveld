@@ -33,8 +33,9 @@ public class LevelLoader {
 	
 	public void loadLevel() {
 		if (levelNumber == 1) {
-			Level1 level1 = new Level1();
-			this.data = level1.getData();
+			
+			
+			
 		}
 	}
 	

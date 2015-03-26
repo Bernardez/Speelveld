@@ -4,47 +4,47 @@ import nl.noscope.emeraldextraction.objects.*;
 import nl.saxion.act.playground.model.GameObject;
 
 public class ObjectHelper {
-	public static GameObject getObject(int typeId) {
-		if (typeId == 1) {
+	public static GameObject getObject(char type) {
+		if (type == 's') {
 			return new Stone();
 		}
-		else if (typeId == 2) {
+		else if (type == 'i') {
 			return new Iron();
 		}
-		else if (typeId == 3) {
+		else if (type == 'e') {
 			return new Emerald();
 		}
-		else if (typeId == 4) {
+		else if (type == 'm') {
 			return new Minecart();
 		}
-		else if (typeId == 5) {
+		else if (type == 'z') {
 			return new Sand();
 		}
-		else if (typeId == 6) {
+		else if (type == 'l') {
 			return new LinkerOnderHoek();
 		}
-		else if (typeId == 7) {
+		else if (type == 'o') {
 			return new OnderRand();
 		}
-		else if (typeId == 8) {
+		else if (type == 'r') {
 			return new RechterOnderHoek();
 		}
-		else if (typeId == 9) {
+		else if (type == 'k') {
 			return new LinkerBovenHoek();
 		}
-		else if (typeId == 10) {
+		else if (type == 'b') {
 			return new BovenRand();
 		}
-		else if (typeId == 11) {
+		else if (type == 't') {
 			return new RechterBovenHoek();
 		}
-		else if (typeId == 12) {
+		else if (type == 'a') {
 			return new LinkerRand();
 		}
-		else if (typeId == 13) {
+		else if (type == 'c') {
 			return new RechterRand();
 		}
-		else if (typeId == 14) {
+		else if (type == 'n') {
 			return new Miner();
 		}
 		return null;

@@ -21,16 +21,16 @@ public class LevelSelect extends Activity {
 		setContentView(R.layout.activity_level__select);
 		Log.d("LevelSelect onCreate", "After setContentView");
 //		setupBackButton();
-		setupLevelButtons(R.id.level1);
-		setupLevelButtons(R.id.level2);
-		setupLevelButtons(R.id.level3);
-		setupLevelButtons(R.id.level4);
-		setupLevelButtons(R.id.level5);
-		setupLevelButtons(R.id.level6);
-		setupLevelButtons(R.id.level7);
-		setupLevelButtons(R.id.level8);
-		setupLevelButtons(R.id.level9);
-		setupLevelButtons(R.id.level10);
+		setupLevelButtons(R.id.level1, 1);
+		setupLevelButtons(R.id.level2, 2);
+		setupLevelButtons(R.id.level3, 3);
+		setupLevelButtons(R.id.level4, 4);
+		setupLevelButtons(R.id.level5, 5);
+		setupLevelButtons(R.id.level6, 6);
+		setupLevelButtons(R.id.level7, 7);
+		setupLevelButtons(R.id.level8, 8);
+		setupLevelButtons(R.id.level9, 9);
+		setupLevelButtons(R.id.level10, 10);
 		
 //		setuplevel1Button();
 //		setuplevel2Button();
@@ -47,7 +47,7 @@ public class LevelSelect extends Activity {
 		Log.d("LevelSelect onCreate", "LevelSelect Activity Oncreate end");
 	}
 	
-	private void setupLevelButtons(int id) {
+	private void setupLevelButtons(int id, final int levelId) {
 		ImageButton newGameButton = (ImageButton) findViewById(id);
 		newGameButton.setOnClickListener(new View.OnClickListener() {
 
@@ -59,7 +59,7 @@ public class LevelSelect extends Activity {
 
 				
 				Intent intent = new Intent(LevelSelect.this, MainActivity.class);
-				intent.addFlags(1);
+				intent.putExtra("LEVEL_ID", levelId);
 				startActivity(intent);
 				Log.d("setuplevel1button", "start activity");
 			}
