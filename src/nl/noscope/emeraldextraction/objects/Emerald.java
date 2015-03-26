@@ -27,9 +27,9 @@ public class Emerald extends GameObject {
 		
 		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 		if (objectAtNewPos == null) {
-			gameBoard.moveObject(this, newPosX, newPosY);
+			gameBoard.moveObject(this, newPosX, newPosY + 1);
 		} else if (objectAtNewPos instanceof Minecart) {
-			gameBoard.removeObject(objectAtNewPos);
+			gameBoard.removeObject(this);
 		} else {
 			return;
 		}

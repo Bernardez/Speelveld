@@ -117,6 +117,7 @@ public class EmeraldExtraction extends Game {
 		LevelLoader levelLoader = new LevelLoader(levelSelection, 500, 1000);
 		
 		miner = new Miner();
+		emerald = new Emerald();
 		
 		//open a level with the level number
 		
@@ -152,6 +153,9 @@ public class EmeraldExtraction extends Game {
         		for (int i = 0; i < levelColumns.length; i++) {
         			if (levelColumns[i] == 'n') {
         				board.addGameObject(miner, i, levelRow);
+        			}
+        			else if (levelColumns[i] == 'e') {
+        				board.addGameObject(emerald, i, levelRow);
         			}
         			else {
         				board.addGameObject(ObjectHelper.getObject(levelColumns[i]), i, levelRow);
