@@ -198,21 +198,25 @@ public class EmeraldExtraction extends Game {
 	
 	public void moveMinerUp(){
 		miner.walkUp(board);
+		emerald.gravityCheck(board);
 		board.updateView();
 	}
 	
 	public void moveMinerDown(){
 		miner.walkDown(board);
+		emerald.gravityCheck(board);
 		board.updateView();
 	}
 	
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
+		emerald.gravityCheck(board);
 		board.updateView();
 	}
 	
 	public void moveMinerRight(){
 		miner.walkRight(board);
+		emerald.gravityCheck(board);
 		board.updateView();
 	}
 

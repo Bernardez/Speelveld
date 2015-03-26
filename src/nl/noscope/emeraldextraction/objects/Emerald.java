@@ -22,19 +22,27 @@ public class Emerald extends GameObject {
 	
 	public void gravityCheck(GameBoard gameBoard){
 		
-		int newPosX = getPositionX();
-		int newPosY = getPositionY() + 1;
 		
-		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
-		if (objectAtNewPos == null) {
-			gameBoard.moveObject(this, newPosX, newPosY + 1);
-		} else if (objectAtNewPos instanceof Minecart) {
-			gameBoard.removeObject(this);
-		} else {
-			return;
+		boolean check = true;
+		
+		while (check){
+			int newPosX = getPositionX();
+			int newPosY = getPositionY() + 1;
+			GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+			if (objectAtNewPos == null) {
+				gameBoard.moveObject(this, newPosX, newPosY + 1);
+			} else if (objectAtNewPos instanceof Emerald) {
+				gameBoard.removeObject(this);
+			} else {
+				return;
+			}
+			gameBoard.updateView();
 		}
 		
-		gameBoard.updateView();
+		
+		
+	
+	
 	}
 	
 	
