@@ -64,11 +64,14 @@ public class Miner extends GameObject {
 		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 		if (objectAtNewPos != null) {
 
-			// Miner kan niet door steen heen;
+			// Miner kan niet door een aantal objecten heen
 			if (objectAtNewPos instanceof Stone) {
 				return;
 			}
 			if (objectAtNewPos instanceof Iron) {
+				return;
+			}
+			if (objectAtNewPos instanceof Minecart) {
 				return;
 			}
 
