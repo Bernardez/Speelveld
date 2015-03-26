@@ -157,6 +157,9 @@ public class EmeraldExtraction extends Game {
         			else if (levelColumns[i] == 'e') {
         				board.addGameObject(emerald, i, levelRow);
         			}
+        			else if (levelColumns[i] == 'd') {
+        				
+        			}
         			else {
         				board.addGameObject(ObjectHelper.getObject(levelColumns[i]), i, levelRow);
         			}
