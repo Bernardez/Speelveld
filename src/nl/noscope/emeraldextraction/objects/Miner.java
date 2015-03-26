@@ -22,36 +22,8 @@ public class Miner extends GameObject {
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
 
-		// Als de nieuwe positie naast het bord is doet hij niks
-		if (newPosX >= gameBoard.getWidth() - 1) {
-			return;
-		}
-
-		// Kijk of er een object is op het nieuwe punt
-		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
-		if (objectAtNewPos != null) {
-
-			// Miner kan niet door steen heen;
-			if (objectAtNewPos instanceof Stone) {
-				return;
-			}
-			if (objectAtNewPos instanceof Iron) {
-				return;
-			}
-
-			if (objectAtNewPos instanceof Emerald) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-			if (objectAtNewPos instanceof Sand) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-		}
-
-		// Verplaats de miner naar zijn nieuwe positie
-		gameBoard.moveObject(this, newPosX, newPosY);
-		gameBoard.updateView();
+		StateCheck(newPosX, newPosY, gameBoard);
+		
 	}
 
 	public void walkRight(GameBoard gameBoard) {
@@ -59,74 +31,16 @@ public class Miner extends GameObject {
 		int newPosX = getPositionX() + 1;
 		int newPosY = getPositionY();
 
-		// Als de nieuwe positie naast het bord is doet hij niks
-		if (newPosX >= gameBoard.getWidth() - 1) {
-			return;
-		}
-
-		// Kijk of er een object is op het nieuwe punt
-		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
-		if (objectAtNewPos != null) {
-
-			// Miner kan niet door steen heen;
-			if (objectAtNewPos instanceof Stone) {
-				return;
-			}
-
-			if (objectAtNewPos instanceof Iron) {
-				return;
-			}
-
-			if (objectAtNewPos instanceof Emerald) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-			if (objectAtNewPos instanceof Sand) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-		}
-
-		// Verplaats de miner naar zijn nieuwe positie
-		gameBoard.moveObject(this, newPosX, newPosY);
-		gameBoard.updateView();
+		StateCheck(newPosX, newPosY, gameBoard);
 	}
 
 	public void walkUp(GameBoard gameBoard) {
 
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() - 1;
+		
 
-		// Als de nieuwe positie naast het bord is doet hij niks
-		if (newPosX >= gameBoard.getWidth() - 1) {
-			return;
-		}
-
-		// Kijk of er een object is op het nieuwe punt
-		GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
-		if (objectAtNewPos != null) {
-
-			// Miner kan niet door steen heen;
-			if (objectAtNewPos instanceof Stone) {
-				return;
-			}
-
-			if (objectAtNewPos instanceof Iron) {
-				return;
-			}
-			if (objectAtNewPos instanceof Emerald) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-			if (objectAtNewPos instanceof Sand) {
-				gameBoard.removeObject(objectAtNewPos);
-
-			}
-		}
-
-		// Verplaats de miner naar zijn nieuwe positie
-		gameBoard.moveObject(this, newPosX, newPosY);
-		gameBoard.updateView();
+		StateCheck(newPosX, newPosY, gameBoard);
 	}
 
 	public void walkDown(GameBoard gameBoard) {
@@ -134,6 +48,11 @@ public class Miner extends GameObject {
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() + 1;
 
+		StateCheck(newPosX, newPosY, gameBoard);
+	
+	}
+
+	private void StateCheck(int newPosX, int newPosY, GameBoard gameBoard) {
 		// Als de nieuwe positie naast het bord is doet hij niks
 		if (newPosX >= gameBoard.getWidth() - 1) {
 			return;
@@ -165,6 +84,7 @@ public class Miner extends GameObject {
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
 
+		
 	}
 
 	@Override
