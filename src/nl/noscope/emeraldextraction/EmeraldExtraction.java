@@ -91,13 +91,7 @@ public class EmeraldExtraction extends Game {
 		// Set size of the view to that of the game board
 		gameView.setFixedGridSize(gameBoard.getWidth(), gameBoard.getHeight());
 		
-//		Log.d("Load level", "Load level");
-//		this.context = activity.getApplicationContext();
-//		//Level level = null;
-//		//level = level.loadLevel(999, context);
-//		DatabaseOperations dob = new DatabaseOperations(context);
-//		level = dob.getLevel(999);
-//		Log.d("Load level", "Level Loaded");
+
 		
 	}
 
