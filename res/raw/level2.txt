@@ -1,0 +1,43 @@
+** You can edit this file to edit the level.
+** Each line that does not start with * won't be loaded.
+** Level lines that will be loaded: 20
+** Level rows that will be loaded: 35
+** Only 1 minecart and 1 Miner may exicst in a level
+**
+** Stone = s
+** Iron = i
+** Emerald = e
+** Minecart = m
+** Sand = z
+** Linker boven hoek = k
+** Rechter boven hoek = t
+** Linker onder hoek = l
+** Rechter onder hoek = r
+** Onder Rand = o
+** Boven rand = b
+** Linker rand =  a
+** Rechter rand = c
+** Miner = n
+** Doorgang (geen block) = d
+**
+**
+kbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbt
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzznzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzszzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzszzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzc
+looooooooooooooooooooooooooooooooor
