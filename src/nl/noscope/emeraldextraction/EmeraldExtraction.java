@@ -30,6 +30,7 @@ import nl.noscope.emeraldextraction.objects.RechterOnderHoek;
 import nl.noscope.emeraldextraction.objects.RechterRand;
 import nl.noscope.emeraldextraction.objects.Sand;
 import nl.noscope.emeraldextraction.objects.Stone;
+import nl.noscope.emeraldextraction.objects.StoneMove;
 import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.R;
@@ -53,6 +54,9 @@ public class EmeraldExtraction extends Game {
 	
 	/** Maakt een emerald aan	 */
 	private Emerald emerald;
+	
+	/** Maakt een emerald aan	 */
+	private StoneMove stoneMove;
 
 	/** Maakt een board aan */
 	GameBoard board;
@@ -112,6 +116,7 @@ public class EmeraldExtraction extends Game {
 		
 		miner = new Miner();
 		emerald = new Emerald();
+		stoneMove = new StoneMove();
 		
 		//open a level with the level number
 		
@@ -199,6 +204,8 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerUp(){
 		miner.walkUp(board);
 		emerald.gravityCheck(board);
+		stoneMove.gravityCheck(board);
+		
 		board.updateView();
 	}
 	

@@ -47,6 +47,9 @@ public class ObjectHelper {
 		else if (type == 'n') {
 			return new Miner();
 		}
+		else if (type == 'f') {
+			return new StoneMove();
+		}
 		return null;
 	}
 }

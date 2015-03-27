@@ -37,10 +37,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main);
 		setFullScreen();
 		setArrowKeys();
-<<<<<<< Updated upstream
-=======
-		// DELETE DEZE REGEL
->>>>>>> Stashed changes
 
 		// Find some of the user interface elements
 		gameView = (EmeraldExtractionBoardView) findViewById(R.id.game);
@@ -49,15 +45,10 @@ public class MainActivity extends Activity {
 		// belonging to the game
 		game = new EmeraldExtraction(this);
 
-<<<<<<< Updated upstream
-	
-		
-=======
 		// Tell user to start the game
 		// Toast.makeText(getApplicationContext(), "Lets start",
 		// Toast.LENGTH_SHORT).show();
 
->>>>>>> Stashed changes
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
 		pauseButton.setOnClickListener(new OnClickListener() {

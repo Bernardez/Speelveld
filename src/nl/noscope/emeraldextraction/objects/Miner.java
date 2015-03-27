@@ -1,5 +1,6 @@
 package nl.noscope.emeraldextraction.objects;
 
+import android.util.Log;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
 
@@ -75,10 +76,56 @@ public class Miner extends GameObject {
 			}
 
 			if (objectAtNewPos instanceof Emerald) {
-				gameBoard.moveObject(objectAtNewPos, newPosX + 1, newPosY);
-					
-			
+				// Je kan een emerald niet naar beneden drukken
+				if (direction == 4) { return; }
+				// Duw de emerald omhoog als er vrije ruimte boven is
+				if (direction == 3) {
+					if (gameBoard.getObject(newPosX, newPosY - 1) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX, newPosY - 1);
+					}
+					else { return; }
+				}
+				// Duw de emerald naar links als er vrije ruimte links van de emerald is
+				if (direction == 1) {
+					if (gameBoard.getObject(newPosX - 1, newPosY) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX -1, newPosY);
+					}
+					else { return; }
+				}
+				// Duw de emerald naar rechts als er vrije ruimte rechts van de emerald is
+				if (direction == 2) {
+					if (gameBoard.getObject(newPosX + 1, newPosY) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX + 1, newPosY);
+					}
+					else { return ; }
+				}
 			}
+			if (objectAtNewPos instanceof StoneMove) {
+				// Je kan een emerald niet naar beneden drukken
+				if (direction == 4) { return; }
+				// Duw de emerald omhoog als er vrije ruimte boven is
+				if (direction == 3) {
+					if (gameBoard.getObject(newPosX, newPosY - 1) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX, newPosY - 1);
+					}
+					else { return; }
+				}
+				// Duw de emerald naar links als er vrije ruimte links van de emerald is
+				if (direction == 1) {
+					if (gameBoard.getObject(newPosX - 1, newPosY) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX -1, newPosY);
+					}
+					else { return; }
+				}
+				// Duw de emerald naar rechts als er vrije ruimte rechts van de emerald is
+				if (direction == 2) {
+					if (gameBoard.getObject(newPosX + 1, newPosY) == null) {
+						gameBoard.moveObject(objectAtNewPos, newPosX + 1, newPosY);
+					}
+					else { return ; }
+				}
+			}
+			
 			if (objectAtNewPos instanceof Sand) {
 				gameBoard.removeObject(objectAtNewPos);
 
@@ -86,9 +133,10 @@ public class Miner extends GameObject {
 		}
 
 		// Verplaats de miner naar zijn nieuwe positie
+		Log.d("Miner", "Ik verplaats nu de miner");
 		gameBoard.moveObject(this, newPosX, newPosY);
 		gameBoard.updateView();
-
+		Log.d("Miner", "Miner verplaatst");
 		
 	}
 

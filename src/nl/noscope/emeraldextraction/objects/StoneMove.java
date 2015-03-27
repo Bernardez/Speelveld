@@ -1,27 +1,25 @@
 package nl.noscope.emeraldextraction.objects;
 
 import android.util.Log;
-import android.widget.Toast;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
+
 /**
- * A leaf object. This is the object that wombats should try to eat. Leafs move
- * up a square when touched, unless a rock is in their path.
+ * A StoneMove object is capable of getting pushed in a direction when there are no obstructions.
  * 
- * @author Paul de Groot
- * @author Jan Stroet
+ * @author Bas Siegerink
  */
-public class Emerald extends GameObject {
-	public static final String EMERALD_IMAGE = "emerald";
+public class StoneMove extends GameObject {
+	public static final String STONE_IMAGE = "stone";
 
 	/** Returns the ImageId of the image to show. */
 	@Override
 	public String getImageId() {
-		return EMERALD_IMAGE;
-	}
 
+		return STONE_IMAGE;
+	}
 	
-	public void gravityCheck(GameBoard gameBoard){
+public void gravityCheck(GameBoard gameBoard){
 		boolean check = true;
 		
 		while (check){
@@ -38,13 +36,10 @@ public class Emerald extends GameObject {
 			gameBoard.updateView();
 		}
 	}
-	
-	
+
 	@Override
 	public void onTouched(GameBoard gameBoard) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 }
