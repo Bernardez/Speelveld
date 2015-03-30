@@ -11,44 +11,70 @@ import nl.saxion.act.playground.model.GameObject;
  */
 public class Miner extends GameObject {
 	public static final String MINER_IMAGE = "miner";
+	public static final String MINER_UP = "up";
+	public static final String MINER_DOWN = "down";
+	public static final String MINER_LEFT = "links";
+	public static final String MINER_RIGHT = "rechts";
+	
+	int position = 0;
 	
 
 	/** Returns the ImageId of the image to show. */
 	@Override
 	public String getImageId() {
-		return MINER_IMAGE;
+		if (position == 1) {
+			return MINER_LEFT;	
+		}  else if (position == 2) {
+			return MINER_RIGHT;	
+		}  else if (position == 3) {
+			return MINER_UP;	
+		} else if (position == 4) {
+			return MINER_DOWN;	
+		} else {
+			return MINER_IMAGE;
+		}
 	}
+	
+	
 
 	public void walkLeft(GameBoard gameBoard) {
+		
+		position = 1;
 
 		int newPosX = getPositionX() - 1;
 		int newPosY = getPositionY();
 
-		StateCheck(newPosX, newPosY, gameBoard, 1);
+		StateCheck(newPosX, newPosY, gameBoard, position);
 		
 	}
 
 	public void walkRight(GameBoard gameBoard) {
 
+		position = 2;
+		
 		int newPosX = getPositionX() + 1;
 		int newPosY = getPositionY();
-		StateCheck(newPosX, newPosY, gameBoard, 2);
+		StateCheck(newPosX, newPosY, gameBoard, position);
 	}
 
 	public void walkUp(GameBoard gameBoard) {
 
+		position = 3;
+		
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() - 1;
 
-		StateCheck(newPosX, newPosY, gameBoard, 3);
+		StateCheck(newPosX, newPosY, gameBoard, position);
 	}
 
 	public void walkDown(GameBoard gameBoard) {
 
+		position = 4;
+		
 		int newPosX = getPositionX();
 		int newPosY = getPositionY() + 1;
 		
-		StateCheck(newPosX, newPosY, gameBoard, 4);
+		StateCheck(newPosX, newPosY, gameBoard, position);
 	
 	}
 

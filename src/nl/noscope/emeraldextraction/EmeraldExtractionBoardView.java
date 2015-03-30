@@ -65,6 +65,10 @@ public class EmeraldExtractionBoardView extends GameBoardView {
 		spriteCache.loadTile(Stone.STONE_IMAGE, R.drawable.stone);
 		spriteCache.loadTile(Iron.IRON_IMAGE, R.drawable.iron);
 		spriteCache.loadTile(Miner.MINER_IMAGE, R.drawable.miner);
+		spriteCache.loadTile(Miner.MINER_DOWN, R.drawable.hanz_looptomlaag);
+		spriteCache.loadTile(Miner.MINER_UP, R.drawable.hanz_looptomhoog);
+		spriteCache.loadTile(Miner.MINER_LEFT, R.drawable.hanz_kijktnaarlinks);
+		spriteCache.loadTile(Miner.MINER_RIGHT, R.drawable.hanz_kijktnaarrechts );
 		spriteCache.loadTile(LinkerRand.LEFT_IMAGE, R.drawable.left);
 		spriteCache.loadTile(RechterRand.RIGHT_IMAGE, R.drawable.right);
 		spriteCache.loadTile(RechterOnderHoek.RIGHTBOTTOM_IMAGE, R.drawable.rightbottom);
