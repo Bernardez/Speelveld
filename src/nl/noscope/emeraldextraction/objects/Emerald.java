@@ -35,6 +35,9 @@ public class Emerald extends GameObject {
 			} else {
 				return;
 			}
+//			if (gameBoard.getObject(newPosX, newPosY + 1) instanceof Minecart) {
+//				gameBoard.removeObject(this);
+//			}
 			gameBoard.updateView();
 		}
 	}

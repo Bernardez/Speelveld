@@ -52,11 +52,21 @@ public class EmeraldExtraction extends Game {
 	/** Maakt een miner aan*/
 	private Miner miner;
 	
-	/** Maakt een emerald aan	 */
-	private Emerald emerald;
+	/** Maakt een emerald lijst aan	 */
+	private ArrayList<Emerald> emeralds = new ArrayList<Emerald>();
 	
-	/** Maakt een emerald aan	 */
-	private StoneMove stoneMove;
+	/** Index die gebruikt wordt bij het
+	 * toevoegen van emeralds aan het game board
+	 */
+	private int emeraldIndex;
+	
+	/** Maakt een emerald lijst aan	 */
+	private ArrayList<StoneMove> stoneMoves = new ArrayList<StoneMove>();
+	
+	/** Index die gebruikt wordt bij het
+	 * toevoegen van emeralds aan het game board
+	 */
+	private int stoneMoveIndex;
 
 	/** Maakt een board aan */
 	GameBoard board;
@@ -114,9 +124,10 @@ public class EmeraldExtraction extends Game {
 		Log.d("EmeraldExtrection", "Loading level" + levelSelection);
 		LevelLoader levelLoader = new LevelLoader(levelSelection, 500, 1000);
 		
+		// Pre-define the objects that has influence on movement and gravity
 		miner = new Miner();
-		emerald = new Emerald();
-		stoneMove = new StoneMove();
+		for (int i = 0; i < 5; i++) { emeralds.add(new Emerald()); }
+		for (int i = 0; i < 10; i++) { stoneMoves.add(new StoneMove()); }
 		
 		//open a level with the level number
 		
@@ -154,10 +165,15 @@ public class EmeraldExtraction extends Game {
         				board.addGameObject(miner, i, levelRow);
         			}
         			else if (levelColumns[i] == 'e') {
-        				board.addGameObject(emerald, i, levelRow);
+        				board.addGameObject(emeralds.get(emeraldIndex), i, levelRow);
+        				emeraldIndex++;
         			}
         			else if (levelColumns[i] == 'd') {
         				
+        			}
+        			else if (levelColumns[i] == 'f') {
+        				board.addGameObject(stoneMoves.get(stoneMoveIndex), i, levelRow);
+        				emeraldIndex++;
         			}
         			else {
         				board.addGameObject(ObjectHelper.getObject(levelColumns[i]), i, levelRow);
@@ -167,27 +183,11 @@ public class EmeraldExtraction extends Game {
         	}
         }
 		
-		for (int i = 0; i <= 28; i++) {
-			//read the message into a string variable and print it.
-			
-		}
-		
 		System.out.println(is);
 		
-//		for (int[] data : dataLevel1) {
-//			if (data[0] != 14) {
-//				board.addGameObject(ObjectHelper.getObject(data[0]), data[1], data[2]);
-//			}
-//			else {
-//				board.addGameObject(miner, data[1], data[2]);
-//			}
-//			
-//		}
 		
 		// Redraw the game view
 		board.updateView();
-		
-		 
 	}
 	
 	public static String convertStreamToString(InputStream is) throws Exception {
@@ -203,27 +203,51 @@ public class EmeraldExtraction extends Game {
 	
 	public void moveMinerUp(){
 		miner.walkUp(board);
-		emerald.gravityCheck(board);
-		stoneMove.gravityCheck(board);
+		for (Emerald emerald : emeralds) {
+			emerald.gravityCheck(board);
+		}
+		for (StoneMove stoneMove : stoneMoves) {
+			stoneMove.gravityCheck(board);
+		}
+		//emeralds.gravityCheck(board);
+		//stoneMove.gravityCheck(board);
 		
 		board.updateView();
 	}
 	
 	public void moveMinerDown(){
 		miner.walkDown(board);
-		emerald.gravityCheck(board);
+		for (Emerald emerald : emeralds) {
+			emerald.gravityCheck(board);
+		}
+		for (StoneMove stoneMove : stoneMoves) {
+			stoneMove.gravityCheck(board);
+		}
+		
 		board.updateView();
 	}
 	
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
-		emerald.gravityCheck(board);
+		for (Emerald emerald : emeralds) {
+			emerald.gravityCheck(board);
+		}
+		for (StoneMove stoneMove : stoneMoves) {
+			stoneMove.gravityCheck(board);
+		}
+		
 		board.updateView();
 	}
 	
 	public void moveMinerRight(){
 		miner.walkRight(board);
-		emerald.gravityCheck(board);
+		for (Emerald emerald : emeralds) {
+			emerald.gravityCheck(board);
+		}
+		for (StoneMove stoneMove : stoneMoves) {
+			stoneMove.gravityCheck(board);
+		}
+		
 		board.updateView();
 	}
 
