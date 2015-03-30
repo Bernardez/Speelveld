@@ -139,6 +139,22 @@ public class EmeraldExtraction extends Game {
         	break;
         case 2: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level2);
         	break;
+        case 3: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level3);
+    		break;
+        case 4: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level4);
+    		break;
+        case 5: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level5);
+    		break;
+        case 6: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level6);
+    		break;
+        case 7: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level7);
+    		break;
+        case 8: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level8);
+    		break;
+        case 9: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level9);
+    		break;
+        case 10: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level10);
+    		break;
         }
         Log.d("EmeraldExtrection", "after create inputfile");
 
