@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import nl.noscope.data.TableDataLevel.TableInfoLevel;
+import nl.noscope.data.TableDataProgress.TableInfoProgress;
 import nl.noscope.data.TableDataScore.TableInfoScore;
 import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
@@ -25,6 +26,7 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 	public static final int database_version = 1;
 	public String CREATE_QUERY_SCORE = "CREATE TABLE "+TableInfoScore.TABLE_NAME+"("+TableInfoScore.PLAYER_NAME+" TEXT,"+TableInfoScore.PLAYER_SCORE+" INTEGER );";
 	//public String CREATE_QUERY_LEVEL = "CREATE TABLE "+TableInfoLevel.TABLE_NAME+"("+TableInfoLevel.LEVEL_NUMBER+ " INTEGER,"+TableInfoLevel.LEVEL_BLOCK_TYPE+" INTEGER,"+ TableInfoLevel.LEVEL_X+" INTEGER,"+TableInfoLevel.LEVEL_Y+" INTEGER );";
+	public String CREATE_QUERY_PROGRESS = "CREATE TABLE "+TableInfoProgress.TABLE_NAME+"("+TableInfoProgress.LEVEL_NUMBER+" INTEGER PRIMARY KEY,"+TableInfoProgress.LEVEL_COMPLETED+" INTEGER );";
 	
 	public DatabaseOperations(Context context) {
 		super(context, TableInfoScore.DATABASE_NAME, null, database_version);
@@ -35,6 +37,7 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase sdb) {
 		sdb.execSQL(CREATE_QUERY_SCORE);
+		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		//sdb.execSQL(CREATE_QUERY_LEVEL);
 		Log.d("Database Operations", "Table created");
 	}
@@ -54,68 +57,69 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		Log.d("Database operations", "One score row inserted");
 	}
 	
-//	public void addLevelPart(DatabaseOperations dop, int levelNumber, int typeId, int x, int y) {
-//		if (hasObject(levelNumber, x, y)) {
-//			Log.d("Database operations", "Deze bestaat al");
-//			return;
-//		}
-//		
-//		//Instanciante variables
-//		SQLiteDatabase SQ = dop.getWritableDatabase();
-//		ContentValues cv = new ContentValues();
-//		cv.put(TableInfoLevel.LEVEL_NUMBER, levelNumber);
-//		cv.put(TableInfoLevel.LEVEL_BLOCK_TYPE, typeId);
-//		cv.put(TableInfoLevel.LEVEL_X, x);
-//		cv.put(TableInfoLevel.LEVEL_Y, y);
-//		
-//		
-//		//Input into database
-//		long k = SQ.insert(TableInfoLevel.TABLE_NAME, null, cv);
-//		Log.d("Database operations", "One level row inserted");
-//	}
+	public void levelComplete(DatabaseOperations dop, int levelNumber) {
+		SQLiteDatabase SQ = dop.getWritableDatabase();
+		ContentValues cv = new ContentValues();
+		cv.put(TableInfoProgress.LEVEL_NUMBER, levelNumber);
+		cv.put(TableInfoProgress.LEVEL_COMPLETED, 1);
+
+		long k = SQ.update(TableInfoProgress.TABLE_NAME, cv, TableInfoProgress.LEVEL_NUMBER+" = " + levelNumber, null);
+		//long k = SQ.insert(TableInfoProgress.TABLE_NAME, null, cv);
+		Log.d("Database Operations", "Level " + levelNumber + " is now saved as 1 in the database");
+	}
 	
-//	public boolean hasObject(int levelNumber, int x, int y){
-//		SQLiteDatabase db = getWritableDatabase();
-//		String selectString = "SELECT * FROM " + TableInfoLevel.TABLE_NAME + " WHERE " + TableInfoLevel.LEVEL_NUMBER + " = " + levelNumber + " AND " + TableInfoLevel.LEVEL_X + " = " + x + " AND " + TableInfoLevel.LEVEL_Y + " = " + y;
-//		Cursor cursor = db.rawQuery(selectString, null);
-//		
-//		boolean hasObject = false;
-//		if(cursor.moveToFirst()) {
-//			hasObject = true;
-//		}
-//		cursor.close();
-//		db.close();
-//		return hasObject;
-//	}
+	public int[] completedLevels(DatabaseOperations dop) {
+		SQLiteDatabase SQ = dop.getReadableDatabase();
+		
+		String[] projection = {
+				TableInfoProgress.LEVEL_NUMBER,
+				TableInfoProgress.LEVEL_COMPLETED
+		};
+		
+		Cursor c = SQ.query(
+				TableInfoProgress.TABLE_NAME,
+				projection,
+				TableInfoProgress.LEVEL_COMPLETED+" = 1", null, null, null, null
+				);
+		
+		int[] levels = new int[c.getCount()];
+		int i = 0;
+		
+		c.moveToFirst();
+		Log.d("Database Operations", "Before loop");
+		while (c.isAfterLast() == false) {
+			levels[i] = c.getInt(0);
+			i++;
+			c.moveToNext();
+		}
+		Log.d("Database Operations", "after loop");
+		return levels;
+	}
 	
-//	public Level getLevel(int levelNumber) {
-//		// Getting all GameObjects from level number
-//		List<int[]> data = new ArrayList<int[]>();
-//		String selectQuery = "SELECT * FROM " + TableInfoLevel.TABLE_NAME + " WHERE " + TableInfoLevel.LEVEL_NUMBER + " = " + levelNumber;
-//		
-//		SQLiteDatabase db = this.getReadableDatabase();
-//		Cursor cursor = db.rawQuery(selectQuery, null);
-//		
-//		Log.d("Database Operations", "after sql create");
-//		
-//		// Looping through all rows and adding to list
-//		int counter = 0;
-//		if (cursor.moveToFirst()) {
-//			do {
-//				int typeId = cursor.getInt(1);
-//				int x = 0; //cursor.getInt(2);
-//				int y =  0; //cursor.getInt(3);
-//				data.add(new int[] {typeId, x, y});
-//				//data.set(counter, new int[] {typeId, x, y});
-//				counter++;
-//			} while (cursor.moveToNext());
-//		}
-//		Level level = new Level(data, levelNumber);
-//		
-//		//SQLiteDatabase SQ = dop.getReadableDatabase();
-//		//Cursor CR = SQ.query(TableInfoLevel.TABLE_NAME, columns, null, null, null, null, null);
-//	
-//		return level;
-//	}
+	public void appendNonExistingLevels(DatabaseOperations dop) {
+		SQLiteDatabase SQ = dop.getReadableDatabase();
+		String[] projection = {
+				TableInfoProgress.LEVEL_NUMBER,
+		};
+		
+		for (int i = 1; i <=10; i++){
+			Cursor c = SQ.query(
+					TableInfoProgress.TABLE_NAME,
+					projection,
+					TableInfoProgress.LEVEL_NUMBER+" = "+ i, null, null, null, null
+					);
+			
+			if (!(c.moveToFirst()) || c.getCount() ==0){
+				ContentValues cv = new ContentValues();
+				cv.put(TableInfoProgress.LEVEL_NUMBER, i);
+				cv.put(TableInfoProgress.LEVEL_COMPLETED, 0);
+				
+				long k = SQ.insert(TableInfoProgress.TABLE_NAME, null, cv);
+				Log.d("Database Operations", "Level " + i + " added as non completed");
+			}
+		}
+	}
+	
+	
 
 }
