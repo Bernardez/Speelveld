@@ -29,14 +29,15 @@ public class Emerald extends GameObject {
 			int newPosY = getPositionY() + 1;
 			GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 			if (objectAtNewPos == null) {
-				Log.d("Emerald", "Object onder emerald is null");
 				gameBoard.moveObject(this, newPosX, newPosY);
+			} else if (objectAtNewPos instanceof Emerald) {
+				gameBoard.removeObject(this);
 			} else {
 				return;
 			}
-			if (gameBoard.getObject(newPosX, newPosY + 1) instanceof Minecart) {
-				gameBoard.removeObject(this);
-			}
+//			if (gameBoard.getObject(newPosX, newPosY + 1) instanceof Minecart) {
+//				gameBoard.removeObject(this);
+//			}
 			gameBoard.updateView();
 		}
 	}
