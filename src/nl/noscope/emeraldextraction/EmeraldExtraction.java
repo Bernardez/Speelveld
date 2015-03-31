@@ -220,7 +220,11 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerUp(){
 		miner.walkUp(board);
 		for (Emerald emerald : emeralds) {
-			emerald.gravityCheck(board);
+			if (emerald.gravityCheck(board)) {
+				emeralds.remove(this);
+				Log.d("EmeraldExtraction", "Emerald removed");
+				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+			}
 		}
 		for (StoneMove stoneMove : stoneMoves) {
 			stoneMove.gravityCheck(board);
@@ -234,7 +238,11 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerDown(){
 		miner.walkDown(board);
 		for (Emerald emerald : emeralds) {
-			emerald.gravityCheck(board);
+			if (emerald.gravityCheck(board)) {
+				emeralds.remove(this);
+				Log.d("EmeraldExtraction", "Emerald removed");
+				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+			}
 		}
 		for (StoneMove stoneMove : stoneMoves) {
 			stoneMove.gravityCheck(board);
@@ -246,7 +254,11 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
 		for (Emerald emerald : emeralds) {
-			emerald.gravityCheck(board);
+			if (emerald.gravityCheck(board)) {
+				emeralds.remove(this);
+				Log.d("EmeraldExtraction", "Emerald removed");
+				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+			}
 		}
 		for (StoneMove stoneMove : stoneMoves) {
 			stoneMove.gravityCheck(board);
@@ -258,7 +270,11 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerRight(){
 		miner.walkRight(board);
 		for (Emerald emerald : emeralds) {
-			emerald.gravityCheck(board);
+			if (emerald.gravityCheck(board)) {
+				Log.d("EmeraldExtraction", "Emerald removed");
+				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+				emeralds.remove(this);
+			}
 		}
 		for (StoneMove stoneMove : stoneMoves) {
 			stoneMove.gravityCheck(board);

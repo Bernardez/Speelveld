@@ -21,26 +21,28 @@ public class Emerald extends GameObject {
 	}
 
 	
-	public void gravityCheck(GameBoard gameBoard){
+	public boolean gravityCheck(GameBoard gameBoard){
 		boolean check = true;
+		boolean isAboveMinecart = false;
 		
 		while (check){
 			int newPosX = getPositionX();
 			int newPosY = getPositionY() + 1;
 			GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
+			
 			if (objectAtNewPos == null) {
 				Log.d("Emerald", "Object onder emerald is null");
 				gameBoard.moveObject(this, newPosX, newPosY);
-			} else {
-				return;
-			}
-			if (gameBoard.getObject(newPosX, newPosY + 1) instanceof Minecart) {
+			} else if (objectAtNewPos instanceof Minecart) {
+				Log.d("Emerald", "Object onder emerald is minecart");
 				gameBoard.removeObject(this);
-			}
+				isAboveMinecart = true;
+				check = false;
+			} else { return false; }
 			gameBoard.updateView();
 		}
+		return isAboveMinecart;
 	}
-	
 	
 	@Override
 	public void onTouched(GameBoard gameBoard) {
