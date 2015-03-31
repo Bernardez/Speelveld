@@ -44,7 +44,7 @@
                 android:src="@drawable/resetbutton" />
 
             <ImageButton
-                android:id="@+id/ImageButton02"
+                android:id="@+id/toMenuButton"
                 android:layout_width="100dp"
                 android:layout_height="102dp"
                 android:layout_marginLeft="30dp"

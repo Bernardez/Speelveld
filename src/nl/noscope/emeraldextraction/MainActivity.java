@@ -45,12 +45,13 @@ public class MainActivity extends Activity {
 		// belonging to the game
 		game = new EmeraldExtraction(this);
 
-		// Tell user to start the game
-		// Toast.makeText(getApplicationContext(), "Lets start",
-		// Toast.LENGTH_SHORT).show();
-
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
+		
+		//Create in menu buttons
+		ImageButton pausePlay = (ImageButton) findViewById(R.id.playButton);
+		ImageButton pauseReset  = (ImageButton) findViewById(R.id.resetButton);
+		ImageButton pauseToMenu = (ImageButton) findViewById(R.id.toMenuButton);
 		pauseButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -66,11 +67,13 @@ public class MainActivity extends Activity {
 						.getAttributes();
 				lp.dimAmount = 0.7f;
 				pause.getWindow().setAttributes(lp);
+				
 				onPause();
 				pause.show();
-
+				
 			}
 		});
+		
 	}
 
 	// Create a set of On screen Navigation buttons
