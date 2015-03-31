@@ -33,7 +33,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level2" />
+            android:src="@drawable/level2locked" />
 
         <ImageButton
             android:id="@+id/level3"
@@ -41,7 +41,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level3" />
+            android:src="@drawable/level3locked" />
 
         <ImageButton
             android:id="@+id/level4"
@@ -49,7 +49,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level4" />
+            android:src="@drawable/level4locked" />
 
         <ImageButton
             android:id="@+id/level5"
@@ -57,7 +57,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level5" />
+            android:src="@drawable/level5locked" />
     </TableRow>
 
     <TableRow
@@ -73,7 +73,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level6" />
+            android:src="@drawable/level6locked" />
 
         <ImageButton
             android:id="@+id/level7"
@@ -81,7 +81,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level7" />
+            android:src="@drawable/level7locked" />
 
         <ImageButton
             android:id="@+id/level8"
@@ -89,7 +89,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level8" />
+            android:src="@drawable/level8locked" />
 
         <ImageButton
             android:id="@+id/level9"
@@ -97,7 +97,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level9" />
+            android:src="@drawable/level9locked" />
 
         <ImageButton
             android:id="@+id/level10"
@@ -105,7 +105,7 @@
             android:layout_height="78dp"
             android:background="@null"
             android:scaleType="centerCrop"
-            android:src="@drawable/level10" />
+            android:src="@drawable/level10locked" />
 
     </TableRow>
 
