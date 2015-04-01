@@ -101,8 +101,7 @@ public class LevelSelect extends Activity {
 		});
 	}
 
-<<<<<<< Updated upstream
-=======
+
 	private void setuplevel1Button() {
 		ImageButton newGameButton = (ImageButton) findViewById(R.id.level1);
 		newGameButton.setOnClickListener(new View.OnClickListener() {
@@ -263,7 +262,6 @@ public class LevelSelect extends Activity {
 			}
 		});
 	}
->>>>>>> Stashed changes
 //	private void setupBackButton() {
 //		ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
 //		levelButton.setOnClickListener(new View.OnClickListener() {
@@ -292,7 +290,7 @@ public class LevelSelect extends Activity {
 		decorView.setSystemUiVisibility(uiOptions);
 	}
 
-<<<<<<< Updated upstream
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -321,6 +319,5 @@ public class LevelSelect extends Activity {
 	public static Context getContext(){
 	    return instance.getApplicationContext();
 	}
-=======
->>>>>>> Stashed changes
+
 }
