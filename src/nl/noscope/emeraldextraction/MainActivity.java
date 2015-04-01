@@ -1,12 +1,10 @@
 package nl.noscope.emeraldextraction;
 
-import nl.noscope.emeraldextraction.objects.Miner;
 import nl.saxion.act.playground.R;
-import nl.saxion.act.playground.model.GameBoard;
-import nl.saxion.act.playground.model.GameObject;
+
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * The main activity.
@@ -47,18 +43,16 @@ public class MainActivity extends Activity {
 
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
-		
-		//Create in menu buttons
-		ImageButton pausePlay = (ImageButton) findViewById(R.id.playButton);
-		ImageButton pauseReset  = (ImageButton) findViewById(R.id.resetButton);
-		ImageButton pauseToMenu = (ImageButton) findViewById(R.id.toMenuButton);
+
+		// Create in menu buttons
+
 		pauseButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				;
 
-				Dialog pause = new Dialog(MainActivity.this);
+				final Dialog pause = new Dialog(MainActivity.this);
+
 				pause.requestWindowFeature(Window.FEATURE_NO_TITLE);
 				pause.getWindow().setBackgroundDrawable(
 						new ColorDrawable(android.graphics.Color.TRANSPARENT));
@@ -67,13 +61,49 @@ public class MainActivity extends Activity {
 						.getAttributes();
 				lp.dimAmount = 0.7f;
 				pause.getWindow().setAttributes(lp);
-				
+
 				onPause();
+
 				pause.show();
-				
+				ImageButton pausePlay = (ImageButton) pause
+						.findViewById(R.id.playButton);
+				ImageButton pauseReset = (ImageButton) pause
+						.findViewById(R.id.resetButton);
+				ImageButton pauseToMenu = (ImageButton) pause
+						.findViewById(R.id.toMenuButton);
+
+				pausePlay.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						onResume();
+						pause.hide();
+
+					}
+				});
+				pauseReset.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Intent intent = getIntent();
+						overridePendingTransition(0, 0);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+						finish();
+						startActivity(intent);
+
+					}
+				});
+				pauseToMenu.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						onBackPressed();
+
+					}
+				});
 			}
 		});
-		
+
 	}
 
 	// Create a set of On screen Navigation buttons
