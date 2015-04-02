@@ -14,6 +14,7 @@ import nl.noscope.emeraldextraction.objects.RechterOnderHoek;
 import nl.noscope.emeraldextraction.objects.RechterRand;
 import nl.noscope.emeraldextraction.objects.Sand;
 import nl.noscope.emeraldextraction.objects.Stone;
+import nl.noscope.emeraldextraction.objects.StoneMove;
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.view.GameBoardView;
 import nl.saxion.act.playground.view.SpriteCache;
@@ -62,7 +63,8 @@ public class EmeraldExtractionBoardView extends GameBoardView {
 
 		// Load the images for the GameObjects
 		spriteCache.loadTile(Emerald.EMERALD_IMAGE, R.drawable.emerald);
-		spriteCache.loadTile(Stone.STONE_IMAGE, R.drawable.stone);
+		spriteCache.loadTile(Stone.STONE_IMAGE, R.drawable.sandstone);
+		spriteCache.loadTile(StoneMove.STONE_IMAGE, R.drawable.stone);
 		spriteCache.loadTile(Iron.IRON_IMAGE, R.drawable.iron);
 		spriteCache.loadTile(Miner.MINER_IMAGE, R.drawable.miner);
 		spriteCache.loadTile(Miner.MINER_DOWN, R.drawable.hanz_looptomlaag);

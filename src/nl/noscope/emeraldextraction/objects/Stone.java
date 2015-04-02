@@ -11,7 +11,7 @@ import nl.saxion.act.playground.model.GameObject;
  * @author Paul de Groot
  */
 public class Stone extends GameObject {
-	public static final String STONE_IMAGE = "stone";
+	public static final String STONE_IMAGE = "sandstone";
 
 	/** Returns the ImageId of the image to show. */
 	@Override

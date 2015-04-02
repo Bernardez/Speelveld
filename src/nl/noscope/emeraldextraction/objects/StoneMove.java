@@ -28,12 +28,14 @@ public void gravityCheck(GameBoard gameBoard){
 			GameObject objectAtNewPos = gameBoard.getObject(newPosX, newPosY);
 			if (objectAtNewPos == null) {
 				gameBoard.moveObject(this, newPosX, newPosY);
-			} else if (objectAtNewPos instanceof Emerald) {
-				gameBoard.removeObject(this);
+			} else if (objectAtNewPos instanceof Minecart) {
+				//GAMEOVER
+				return;
 			} else {
 				return;
 			}
 			gameBoard.updateView();
+			
 		}
 	}
 
