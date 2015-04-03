@@ -11,10 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageButton;
 import nl.noscope.data.DatabaseOperations;
 import nl.noscope.emeraldextraction.objects.BovenRand;
 import nl.noscope.emeraldextraction.objects.Emerald;
@@ -34,6 +41,7 @@ import nl.noscope.emeraldextraction.objects.StoneMove;
 import nl.noscope.level.LevelLoader;
 import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.R;
+import nl.saxion.act.playground.activities.LevelSelect;
 import nl.saxion.act.playground.activities.MainMenuActivity;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
@@ -71,6 +79,9 @@ public class EmeraldExtraction extends Game {
 	/** Maakt een board aan */
 	GameBoard board;
 	
+	/** Houd het level bij */
+	int levelSelection;
+	
 	private Resources resources;
 	
 	/**
@@ -90,7 +101,7 @@ public class EmeraldExtraction extends Game {
         resources = activity.getApplicationContext().getResources();  
 		
 		Intent intent = this.activity.getIntent();
-		int levelSelection = intent.getIntExtra("LEVEL_ID", 1);
+		levelSelection = intent.getIntExtra("LEVEL_ID", 1);
 		Log.d("EmeraldExtracion", "Level id intent = " + intent.getIntExtra("LEVEL_ID", 1));
 		Log.d("EmeraldExtracion", "Level id levelSelection int = " + levelSelection);
 
@@ -125,9 +136,7 @@ public class EmeraldExtraction extends Game {
 		LevelLoader levelLoader = new LevelLoader(levelSelection, 500, 1000);
 		
 		// Pre-define the objects that has influence on movement and gravity
-		miner = new Miner();
-		for (int i = 0; i < 5; i++) { emeralds.add(new Emerald()); }
-		for (int i = 0; i < 10; i++) { stoneMoves.add(new StoneMove()); }
+     	miner = new Miner();
 		
 		//open a level with the level number
 		
@@ -181,6 +190,7 @@ public class EmeraldExtraction extends Game {
         				board.addGameObject(miner, i, levelRow);
         			}
         			else if (levelColumns[i] == 'e') {
+        				emeralds.add(new Emerald());
         				board.addGameObject(emeralds.get(emeraldIndex), i, levelRow);
         				emeraldIndex++;
         			}
@@ -188,6 +198,7 @@ public class EmeraldExtraction extends Game {
         				
         			}
         			else if (levelColumns[i] == 'f') {
+        				stoneMoves.add(new StoneMove());
         				board.addGameObject(stoneMoves.get(stoneMoveIndex), i, levelRow);
         				emeraldIndex++;
         			}
@@ -198,9 +209,10 @@ public class EmeraldExtraction extends Game {
         		levelRow++;
         	}
         }
-		
-		System.out.println(is);
-		
+        
+        
+     	//for (int i = 0; i < 5; i++) { emeralds.add(new Emerald()); }
+     	//for (int i = 0; i < 10; i++) { stoneMoves.add(new StoneMove()); }
 		
 		// Redraw the game view
 		board.updateView();
@@ -219,68 +231,78 @@ public class EmeraldExtraction extends Game {
 	
 	public void moveMinerUp(){
 		miner.walkUp(board);
-		for (Emerald emerald : emeralds) {
-			if (emerald.gravityCheck(board)) {
-				emeralds.remove(this);
-				Log.d("EmeraldExtraction", "Emerald removed");
-				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
-			}
-		}
-		for (StoneMove stoneMove : stoneMoves) {
-			stoneMove.gravityCheck(board);
-		}
-		//emeralds.gravityCheck(board);
-		//stoneMove.gravityCheck(board);
+		gravityCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerDown(){
 		miner.walkDown(board);
-		for (Emerald emerald : emeralds) {
-			if (emerald.gravityCheck(board)) {
-				emeralds.remove(this);
-				Log.d("EmeraldExtraction", "Emerald removed");
-				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
-			}
-		}
-		for (StoneMove stoneMove : stoneMoves) {
-			stoneMove.gravityCheck(board);
-		}
+		gravityCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
-		for (Emerald emerald : emeralds) {
-			if (emerald.gravityCheck(board)) {
-				emeralds.remove(this);
-				Log.d("EmeraldExtraction", "Emerald removed");
-				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
-			}
-		}
-		for (StoneMove stoneMove : stoneMoves) {
-			stoneMove.gravityCheck(board);
-		}
+		gravityCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerRight(){
 		miner.walkRight(board);
+		gravityCheck();
+		
+		board.updateView();
+	}
+	
+	public void gravityCheck() {
 		for (Emerald emerald : emeralds) {
 			if (emerald.gravityCheck(board)) {
+				emeralds.remove(emerald);
 				Log.d("EmeraldExtraction", "Emerald removed");
 				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
-				emeralds.remove(this);
 			}
 		}
 		for (StoneMove stoneMove : stoneMoves) {
 			stoneMove.gravityCheck(board);
 		}
 		
-		board.updateView();
+		if (emeralds.size() < 1) {
+			Log.d("EmeraldExtraction", "Level gewonnen");
+			
+
+			final Dialog levelSucces = new Dialog(activity);
+			
+			levelSucces.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			levelSucces.getWindow().setBackgroundDrawable(
+					new ColorDrawable(android.graphics.Color.TRANSPARENT));
+			levelSucces.setContentView(R.layout.levelclearedmenu);
+			WindowManager.LayoutParams lp = levelSucces.getWindow().getAttributes();
+			lp.dimAmount = 0.7f;
+			levelSucces.getWindow().setAttributes(lp);
+			
+			levelSucces.show();
+			
+			ImageButton succesRetry = (ImageButton) levelSucces.findViewById(R.id.levelcleared_resetbutton);
+			
+			succesRetry.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					activity.finish();
+					
+					Intent intent = new Intent(activity, MainActivity.class);
+					intent.putExtra("LEVEL_ID", levelSelection);
+					Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection);
+					activity.startActivity(intent);
+				}
+				
+			});
+			
+			//activity.finish();
+		}
 	}
 
 }
