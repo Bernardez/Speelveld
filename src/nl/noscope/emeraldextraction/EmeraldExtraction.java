@@ -191,6 +191,7 @@ public class EmeraldExtraction extends Game {
         			}
         			else if (levelColumns[i] == 'e') {
         				emeralds.add(new Emerald());
+        				Log.d("EmeraldExtraction", "emeraldIndex : " + emeraldIndex);
         				board.addGameObject(emeralds.get(emeraldIndex), i, levelRow);
         				emeraldIndex++;
         			}
@@ -200,7 +201,7 @@ public class EmeraldExtraction extends Game {
         			else if (levelColumns[i] == 'f') {
         				stoneMoves.add(new StoneMove());
         				board.addGameObject(stoneMoves.get(stoneMoveIndex), i, levelRow);
-        				emeraldIndex++;
+        				stoneMoveIndex++;
         			}
         			else {
         				board.addGameObject(ObjectHelper.getObject(levelColumns[i]), i, levelRow);
@@ -231,33 +232,33 @@ public class EmeraldExtraction extends Game {
 	
 	public void moveMinerUp(){
 		miner.walkUp(board);
-		gravityCheck();
+		gameProgressCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerDown(){
 		miner.walkDown(board);
-		gravityCheck();
+		gameProgressCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
-		gravityCheck();
+		gameProgressCheck();
 		
 		board.updateView();
 	}
 	
 	public void moveMinerRight(){
 		miner.walkRight(board);
-		gravityCheck();
+		gameProgressCheck();
 		
 		board.updateView();
 	}
 	
-	public void gravityCheck() {
+	public void gameProgressCheck() {
 		for (Emerald emerald : emeralds) {
 			if (emerald.gravityCheck(board)) {
 				emeralds.remove(emerald);
@@ -288,7 +289,18 @@ public class EmeraldExtraction extends Game {
 			
 			levelSucces.show();
 			
+			ImageButton succesSelection = (ImageButton) levelSucces.findViewById(R.id.levelcleared_tomenubutton);
 			ImageButton succesRetry = (ImageButton) levelSucces.findViewById(R.id.levelcleared_resetbutton);
+			ImageButton succesAdvance = (ImageButton) levelSucces.findViewById(R.id.levelcleared_nextlevelbutton);
+			
+			succesSelection.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					activity.finish();
+				}
+				
+			});
 			
 			succesRetry.setOnClickListener(new OnClickListener() {
 
@@ -299,6 +311,20 @@ public class EmeraldExtraction extends Game {
 					Intent intent = new Intent(activity, MainActivity.class);
 					intent.putExtra("LEVEL_ID", levelSelection);
 					Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection);
+					activity.startActivity(intent);
+				}
+				
+			});
+			
+			succesAdvance.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					activity.finish();
+					
+					Intent intent = new Intent(activity, MainActivity.class);
+					intent.putExtra("LEVEL_ID", levelSelection + 1);
+					Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection + 1);
 					activity.startActivity(intent);
 				}
 				

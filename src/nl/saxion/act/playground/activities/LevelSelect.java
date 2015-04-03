@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 
 public class LevelSelect extends Activity {
 	private static LevelSelect instance;
+	
+	private ImageButton level2, level3, level4, level5, level6, level7, level8, level9, level10;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,46 +27,21 @@ public class LevelSelect extends Activity {
 		setContentView(R.layout.activity_level__select);
 		Log.d("LevelSelect onCreate", "After setContentView");
 		
-		// Load level progress
-		Context context = LevelSelect.getContext();
-		DatabaseOperations DB = new DatabaseOperations(context);
-		int levels[] = DB.completedLevels(DB);
+		
 		
 		// Instantiate all buttons (except 1)
-		ImageButton level2 = (ImageButton) findViewById(R.id.level2);
-		ImageButton level3 = (ImageButton) findViewById(R.id.level3);
-		ImageButton level4 = (ImageButton) findViewById(R.id.level4);
-		ImageButton level5 = (ImageButton) findViewById(R.id.level5);
-		ImageButton level6 = (ImageButton) findViewById(R.id.level6);
-		ImageButton level7 = (ImageButton) findViewById(R.id.level7);
-		ImageButton level8 = (ImageButton) findViewById(R.id.level8);
-		ImageButton level9 = (ImageButton) findViewById(R.id.level9);
-		ImageButton level10 = (ImageButton) findViewById(R.id.level10);
+		level2 = (ImageButton) findViewById(R.id.level2);
+		level3 = (ImageButton) findViewById(R.id.level3);
+		level4 = (ImageButton) findViewById(R.id.level4);
+		level5 = (ImageButton) findViewById(R.id.level5);
+		level6 = (ImageButton) findViewById(R.id.level6);
+		level7 = (ImageButton) findViewById(R.id.level7);
+		level8 = (ImageButton) findViewById(R.id.level8);
+		level9 = (ImageButton) findViewById(R.id.level9);
+		level10 = (ImageButton) findViewById(R.id.level10);
 		
 		
-		// Set 'unlocked' image as ImageButton when level was unlocked
-		for (int i : levels) {
-			switch (i) {
-			case 1:		level2.setImageResource(R.drawable.level2);
-				break;
-			case 2: 	level3.setImageResource(R.drawable.level3);
-				break;
-			case 3:		level4.setImageResource(R.drawable.level4);
-				break;
-			case 4:		level5.setImageResource(R.drawable.level5);
-				break;
-			case 5:		level6.setImageResource(R.drawable.level6);
-				break;
-			case 6:		level7.setImageResource(R.drawable.level7);
-				break;
-			case 7:		level8.setImageResource(R.drawable.level8);
-				break;
-			case 8:		level9.setImageResource(R.drawable.level9);
-				break;
-			case 9:	level10.setImageResource(R.drawable.level10);
-				break;
-			}
-		}
+		loadLevelSelectImages();
 		
 //		setupBackButton();
 		setupLevelButtons(R.id.level1, 1);
@@ -81,6 +58,13 @@ public class LevelSelect extends Activity {
 		setFullScreen();
 		
 		Log.d("LevelSelect onCreate", "LevelSelect Activity Oncreate end");
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		loadLevelSelectImages();
+		Log.d("LevelSelect onResume", "LevelSelect Activity onResume");
 	}
 	
 	private void setupLevelButtons(int id, final int levelId) {
@@ -102,166 +86,38 @@ public class LevelSelect extends Activity {
 	}
 
 
-	private void setuplevel1Button() {
-		ImageButton newGameButton = (ImageButton) findViewById(R.id.level1);
-		newGameButton.setOnClickListener(new View.OnClickListener() {
+	private void loadLevelSelectImages() {
+		// Load level progress
+		Context context = LevelSelect.getContext();
+		DatabaseOperations DB = new DatabaseOperations(context);
+		int levels[] = DB.completedLevels(DB);
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-				Log.d("setuplevel1button", "Set full screen");
-
-				startActivity(new Intent(LevelSelect.this, MainActivity.class));
-				Log.d("setuplevel1button", "start activity");
+		// Set 'unlocked' image as ImageButton when level was unlocked
+		for (int i : levels) {
+			switch (i) {
+			case 1: level2.setImageResource(R.drawable.level2);
+				break;
+			case 2:	level3.setImageResource(R.drawable.level3);
+				break;
+			case 3:	level4.setImageResource(R.drawable.level4);
+				break;
+			case 4:	level5.setImageResource(R.drawable.level5);
+				break;
+			case 5:	level6.setImageResource(R.drawable.level6);
+				break;
+			case 6:	level7.setImageResource(R.drawable.level7);
+				break;
+			case 7:	level8.setImageResource(R.drawable.level8);
+				break;
+			case 8:	level9.setImageResource(R.drawable.level9);
+				break;
+			case 9:	level10.setImageResource(R.drawable.level10);
+				break;
 			}
-		});
+		}
 	}
 
-	private void setuplevel2Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level2);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel3Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level3);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel4Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level4);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel5Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level5);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel6Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level6);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel7Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level7);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel8Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level8);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel9Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level9);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel10Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level10);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				setFullScreen();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
+	
 //	private void setupBackButton() {
 //		ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
 //		levelButton.setOnClickListener(new View.OnClickListener() {
