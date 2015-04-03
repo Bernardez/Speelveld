@@ -45,23 +45,23 @@ public class LevelSelect extends Activity {
 		// Set 'unlocked' image as ImageButton when level was unlocked
 		for (int i : levels) {
 			switch (i) {
-			case 2:		level2.setImageResource(R.drawable.level2);
+			case 1:		level2.setImageResource(R.drawable.level2);
 				break;
-			case 3: 	level3.setImageResource(R.drawable.level3);
+			case 2: 	level3.setImageResource(R.drawable.level3);
 				break;
-			case 4:		level4.setImageResource(R.drawable.level4);
+			case 3:		level4.setImageResource(R.drawable.level4);
 				break;
-			case 5:		level5.setImageResource(R.drawable.level5);
+			case 4:		level5.setImageResource(R.drawable.level5);
 				break;
-			case 6:		level6.setImageResource(R.drawable.level6);
+			case 5:		level6.setImageResource(R.drawable.level6);
 				break;
-			case 7:		level7.setImageResource(R.drawable.level7);
+			case 6:		level7.setImageResource(R.drawable.level7);
 				break;
-			case 8:		level8.setImageResource(R.drawable.level8);
+			case 7:		level8.setImageResource(R.drawable.level8);
 				break;
-			case 9:		level9.setImageResource(R.drawable.level9);
+			case 8:		level9.setImageResource(R.drawable.level9);
 				break;
-			case 10:	level10.setImageResource(R.drawable.level10);
+			case 9:	level10.setImageResource(R.drawable.level10);
 				break;
 			}
 		}

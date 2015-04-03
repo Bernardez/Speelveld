@@ -272,6 +272,9 @@ public class EmeraldExtraction extends Game {
 		if (emeralds.size() < 1) {
 			Log.d("EmeraldExtraction", "Level gewonnen");
 			
+			DatabaseOperations DOP = new DatabaseOperations(activity.getApplicationContext());
+			DOP.levelComplete(DOP, levelSelection);
+			
 
 			final Dialog levelSucces = new Dialog(activity);
 			
