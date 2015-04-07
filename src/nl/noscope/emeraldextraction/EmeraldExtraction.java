@@ -246,7 +246,9 @@ public class EmeraldExtraction extends Game {
 	
 	public void moveMinerLeft(){
 		miner.walkLeft(board);
+		Log.d("EmeraldExtraction", "Bevore progress check");
 		gameProgressCheck();
+		Log.d("EmeraldExtraction", "after progress check");
 		
 		board.updateView();
 	}
@@ -259,23 +261,35 @@ public class EmeraldExtraction extends Game {
 	}
 	
 	public void gameProgressCheck() {
+		int emeraldToRemove = -1;
 		for (Emerald emerald : emeralds) {
-			if (emerald.gravityCheck(board)) {
-				Log.d("EmeraldExtraction", "Index emerald die verwijdert wordt: " + emeralds.indexOf(emerald));
-				emeralds.remove(emerald);
-				Log.d("EmeraldExtraction", "Emerald removed");
-				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+			Log.d("EmeraldExtraction", "Dit is emerald: " + emeralds.indexOf(emerald));
+			if (emerald != null) {
+				if (emerald.gravityCheck(board)) {
+					Log.d("EmeraldExtraction", "Index emerald die verwijdert wordt: " + emeralds.indexOf(emerald));
+					//emeralds.remove(emerald);
+					emeraldToRemove = emeralds.indexOf(emerald);
+					Log.d("EmeraldExtraction", "Emerald removed");
+					Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
+				}
 			}
 		}
+		if (emeraldToRemove >= 0) {
+			emeralds.remove(emeraldToRemove);
+		}
+		
 		for (StoneMove stoneMove : stoneMoves) {
-			stoneMove.gravityCheck(board);
+			if (stoneMove != null) {
+				stoneMove.gravityCheck(board);
+			}
 		}
 		
 		if (emeralds.size() < 1) {
 			levelCleared();
 			
-			Log.d("MainActivity", "end GameProgressCheck");
 		}
+		
+		Log.d("MainActivity", "end GameProgressCheck");
 	}
 	
 	public void levelCleared() {
