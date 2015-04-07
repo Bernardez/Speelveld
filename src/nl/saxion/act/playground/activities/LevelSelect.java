@@ -85,154 +85,13 @@ public class LevelSelect extends Activity {
 	}
 
 
-<<<<<<< Updated upstream
+
 	private void loadLevelSelectImages() {
 		// Load level progress
 		Context context = LevelSelect.getContext();
 		DatabaseOperations DB = new DatabaseOperations(context);
 		int levels[] = DB.completedLevels(DB);
-=======
-	private void setuplevel1Button() {
-		ImageButton newGameButton = (ImageButton) findViewById(R.id.level1);
-		newGameButton.setOnClickListener(new View.OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-				Log.d("setuplevel1button", "Set full screen");
-
-				startActivity(new Intent(LevelSelect.this, MainActivity.class));
-				Log.d("setuplevel1button", "start activity");
-			}
-		});
-	}
-
-	private void setuplevel2Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level2);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel3Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level3);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel4Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level4);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel5Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level5);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel6Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level6);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel7Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level7);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel8Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level8);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
-
-	private void setuplevel9Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level9);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
->>>>>>> Stashed changes
 
 		// Set 'unlocked' image as ImageButton when level was unlocked
 		for (int i : levels) {
@@ -259,25 +118,6 @@ public class LevelSelect extends Activity {
 		}
 	}
 
-<<<<<<< Updated upstream
-	
-=======
-	private void setuplevel10Button() {
-		ImageButton levelButton = (ImageButton) findViewById(R.id.level10);
-		levelButton.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				hideSystemUI();
-
-				// startActivity(new Intent(LevelSelect.this,
-				// MainActivity.class));
-
-			}
-		});
-	}
->>>>>>> Stashed changes
 //	private void setupBackButton() {
 //		ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
 //		levelButton.setOnClickListener(new View.OnClickListener() {
