@@ -5,6 +5,7 @@
 ** Only 1 minecart and 1 Miner may exicst in a level
 **
 ** Stone = s
+** StoneMove (verplaatsbaar steen) = f
 ** Iron = i
 ** Emerald = e
 ** Minecart = m
