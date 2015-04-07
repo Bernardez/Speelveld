@@ -270,68 +270,72 @@ public class EmeraldExtraction extends Game {
 			stoneMove.gravityCheck(board);
 		}
 		
-		if (emeralds.size() < 1) {
-			Log.d("EmeraldExtraction", "Level gewonnen");
-			
-			DatabaseOperations DOP = new DatabaseOperations(activity.getApplicationContext());
-			DOP.levelComplete(DOP, levelSelection);
-			
+//		if (emeralds.size() < 1) {
+//			levelCleared();
+//			
+//			Log.d("MainActivity", "end GameProgressCheck");
+//		}
+	}
+	
+	public void levelCleared() {
+		Log.d("EmeraldExtraction", "Level gewonnen");
+		
+		DatabaseOperations DOP = new DatabaseOperations(activity.getApplicationContext());
+		DOP.levelComplete(DOP, levelSelection);
+		
 
-			final Dialog levelSucces = new Dialog(activity);
-			
-			levelSucces.requestWindowFeature(Window.FEATURE_NO_TITLE);
-			levelSucces.getWindow().setBackgroundDrawable(
-					new ColorDrawable(android.graphics.Color.TRANSPARENT));
-			levelSucces.setContentView(R.layout.levelclearedmenu);
-			WindowManager.LayoutParams lp = levelSucces.getWindow().getAttributes();
-			lp.dimAmount = 0.7f;
-			levelSucces.getWindow().setAttributes(lp);
-			
-			levelSucces.show();
-			
-			ImageButton succesSelection = (ImageButton) levelSucces.findViewById(R.id.levelcleared_tomenubutton);
-			ImageButton succesRetry = (ImageButton) levelSucces.findViewById(R.id.levelcleared_resetbutton);
-			ImageButton succesAdvance = (ImageButton) levelSucces.findViewById(R.id.levelcleared_nextlevelbutton);
-			
-			succesSelection.setOnClickListener(new OnClickListener() {
+		final Dialog levelSucces = new Dialog(activity);
+		
+		levelSucces.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		levelSucces.getWindow().setBackgroundDrawable(
+				new ColorDrawable(android.graphics.Color.TRANSPARENT));
+		levelSucces.setContentView(R.layout.levelclearedmenu);
+		WindowManager.LayoutParams lp = levelSucces.getWindow().getAttributes();
+		lp.dimAmount = 0.7f;
+		levelSucces.getWindow().setAttributes(lp);
+		
+		levelSucces.show();
+		
+		ImageButton succesSelection = (ImageButton) levelSucces.findViewById(R.id.levelcleared_tomenubutton);
+		ImageButton succesRetry = (ImageButton) levelSucces.findViewById(R.id.levelcleared_resetbutton);
+		ImageButton succesAdvance = (ImageButton) levelSucces.findViewById(R.id.levelcleared_nextlevelbutton);
+		
+		succesSelection.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					activity.finish();
-				}
+			@Override
+			public void onClick(View v) {
+				activity.finish();
+			}
+			
+		});
+		
+		succesRetry.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				activity.finish();
 				
-			});
+				Intent intent = new Intent(activity, MainActivity.class);
+				intent.putExtra("LEVEL_ID", levelSelection);
+				Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection);
+				activity.startActivity(intent);
+			}
 			
-			succesRetry.setOnClickListener(new OnClickListener() {
+		});
+		
+		succesAdvance.setOnClickListener(new OnClickListener() {
 
-				@Override
-				public void onClick(View v) {
-					activity.finish();
-					
-					Intent intent = new Intent(activity, MainActivity.class);
-					intent.putExtra("LEVEL_ID", levelSelection);
-					Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection);
-					activity.startActivity(intent);
-				}
+			@Override
+			public void onClick(View v) {
+				activity.finish();
 				
-			});
+				Intent intent = new Intent(activity, MainActivity.class);
+				intent.putExtra("LEVEL_ID", levelSelection + 1);
+				Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection + 1);
+				activity.startActivity(intent);
+			}
 			
-			succesAdvance.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					activity.finish();
-					
-					Intent intent = new Intent(activity, MainActivity.class);
-					intent.putExtra("LEVEL_ID", levelSelection + 1);
-					Log.d("setuplevel1button", "start activity with intent level id: "  + levelSelection + 1);
-					activity.startActivity(intent);
-				}
-				
-			});
-			
-			//activity.finish();
-		}
+		});
 	}
 
 }

@@ -159,9 +159,9 @@ public class Miner extends GameObject {
 		}
 
 		// Verplaats de miner naar zijn nieuwe positie
-		Log.d("Miner", "Ik verplaats nu de miner");
+		//Log.d("Miner", "Ik verplaats nu de miner");
 		gameBoard.moveObject(this, newPosX, newPosY);
-		gameBoard.updateView();
+		//gameBoard.updateView();
 		Log.d("Miner", "Miner verplaatst");
 		
 	}
