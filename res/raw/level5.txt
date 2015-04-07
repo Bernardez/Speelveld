@@ -1,4 +1,4 @@
-  ** You can edit this file to edit the level.
+** You can edit this file to edit the level.
 ** Each line that does not start with * won't be loaded.
 ** Level lines that will be loaded: 20
 ** Level rows that will be loaded: 35
