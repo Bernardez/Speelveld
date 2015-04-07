@@ -21,7 +21,7 @@ public class MainMenuActivity extends Activity {
 		setContentView(R.layout.activity_main_menu);
 
 		setupNewGameButton();
-		setFullScreen();
+		hideSystemUI();
 
 		//Database operations
 		Log.d("Database operations", "main menu activity oncreate //database operations");
@@ -51,7 +51,7 @@ public class MainMenuActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				setFullScreen();
+				hideSystemUI();
 				
 				Log.d("setupNewGameButton onclick", "Start activity levelselect");
 				startActivity(new Intent(MainMenuActivity.this,
@@ -62,18 +62,20 @@ public class MainMenuActivity extends Activity {
 		Log.d("setupNewGameButton", "newGameButton setup");
 	}
 
-	private void setFullScreen() {
-		View decorView = getWindow().getDecorView();
-		// Hide both the navigation bar and the status bar.
-		// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and
-		// higher, but as
-		// a general rule, you should design your app to hide the status bar
-		// whenever you
-		// hide the navigation bar.
-		int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-		decorView.setSystemUiVisibility(uiOptions);
-		
-		Log.d("setFullScreen", "setFullScreen executed");
+		private void hideSystemUI() {
+			View mDecorView  = getWindow().getDecorView();
+		    // Set the IMMERSIVE flag.
+		    // Set the content to appear under the system bars so that the content
+		    // doesn't resize when the system bars hide and show.
+		    mDecorView.setSystemUiVisibility(
+		            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+		            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+		            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+		            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+		            | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+		            | View.SYSTEM_UI_FLAG_IMMERSIVE);
+	
+		Log.d("hideSystemUI", "hideSystemUI executed");
 	}
 
 	/** Get singleton instance of activity **/
