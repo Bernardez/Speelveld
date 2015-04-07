@@ -261,6 +261,7 @@ public class EmeraldExtraction extends Game {
 	public void gameProgressCheck() {
 		for (Emerald emerald : emeralds) {
 			if (emerald.gravityCheck(board)) {
+				Log.d("EmeraldExtraction", "Index emerald die verwijdert wordt: " + emeralds.indexOf(emerald));
 				emeralds.remove(emerald);
 				Log.d("EmeraldExtraction", "Emerald removed");
 				Log.d("EmeraldExtraction", "emeralds groote: " + emeralds.size());
@@ -270,11 +271,11 @@ public class EmeraldExtraction extends Game {
 			stoneMove.gravityCheck(board);
 		}
 		
-//		if (emeralds.size() < 1) {
-//			levelCleared();
-//			
-//			Log.d("MainActivity", "end GameProgressCheck");
-//		}
+		if (emeralds.size() < 1) {
+			levelCleared();
+			
+			Log.d("MainActivity", "end GameProgressCheck");
+		}
 	}
 	
 	public void levelCleared() {
