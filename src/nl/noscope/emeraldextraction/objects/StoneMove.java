@@ -29,7 +29,13 @@ public void gravityCheck(GameBoard gameBoard){
 			if (objectAtNewPos == null) {
 				gameBoard.moveObject(this, newPosX, newPosY);
 			} else if (objectAtNewPos instanceof Minecart) {
-				//GAMEOVER
+				// GAME OVER
+				// Remove Minecart & Place Broken minecart on the new position
+				gameBoard.removeObject(objectAtNewPos);
+				gameBoard.addGameObject(new MinecartDestroyed(), newPosX, newPosY);
+				
+				// Remove the stone
+				gameBoard.removeObject(this);
 				return;
 			} else {
 				return;
