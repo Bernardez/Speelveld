@@ -5,46 +5,28 @@
     android:orientation="vertical" >
 
     <FrameLayout
-        android:layout_width="346dp"
-        android:layout_height="270dp" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:scaleType="fitCenter"
             android:src="@drawable/levelcleared" />
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="70dp"
-            android:text="1000"
-            android:textSize="33sp" />
-
-        <TextView
-            android:id="@+id/TextView01"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:layout_marginRight="70dp"
-            android:layout_marginTop="20dp"
-            android:text="1000"
-            android:textSize="33sp" />
-
         <LinearLayout
-            android:layout_width="301dp"
-            android:layout_height="84dp"
-            android:layout_gravity="bottom|center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="25dp"
             android:orientation="horizontal" >
 
             <ImageButton
                 android:id="@+id/levelcleared_tomenubutton"
-                android:layout_width="75dp"
-                android:layout_height="77dp"
-                android:layout_gravity="left"
+                android:layout_width="105dp"
+                android:layout_height="107dp"
+                android:layout_gravity="center"
                 android:layout_weight="0.33"
                 android:background="@null"
                 android:scaleType="fitCenter"
@@ -52,8 +34,8 @@
 
             <ImageButton
                 android:id="@+id/levelcleared_resetbutton"
-                android:layout_width="75dp"
-                android:layout_height="77dp"
+                android:layout_width="105dp"
+                android:layout_height="107dp"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
                 android:background="@null"
@@ -62,9 +44,11 @@
 
             <ImageButton
                 android:id="@+id/levelcleared_nextlevelbutton"
-                android:layout_width="75dp"
-                android:layout_height="77dp"
+                android:layout_width="105dp"
+                android:layout_height="107dp"
+                android:layout_gravity="center"
                 android:layout_weight="0.33"
+                android:adjustViewBounds="true"
                 android:background="@null"
                 android:scaleType="fitCenter"
                 android:src="@drawable/nextlevelbutton" />

@@ -299,9 +299,10 @@ public class EmeraldExtraction extends Game {
 		DOP.levelComplete(DOP, levelSelection);
 		
 
-		final Dialog levelSucces = new Dialog(activity);
+		final Dialog levelSucces = new Dialog(activity, android.R.style.Theme_Light_NoTitleBar_Fullscreen);
 		
 		levelSucces.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		levelSucces.getWindow().setBackgroundDrawable(
 				new ColorDrawable(android.graphics.Color.TRANSPARENT));
 		levelSucces.setContentView(R.layout.levelclearedmenu);
