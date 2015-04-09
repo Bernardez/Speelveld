@@ -1,7 +1,6 @@
 package nl.saxion.act.playground.activities;
 
 import nl.noscope.data.DatabaseOperations;
-import nl.noscope.level.LevelLoader;
 import nl.saxion.act.playground.R;
 import android.app.Activity;
 import android.content.Context;

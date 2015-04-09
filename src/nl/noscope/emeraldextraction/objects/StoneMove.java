@@ -1,9 +1,7 @@
 package nl.noscope.emeraldextraction.objects;
 
-import android.util.Log;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
-import nl.noscope.emeraldextraction.objects.MinecartDestroyed;
 
 /**
  * A StoneMove object is capable of getting pushed in a direction when there are no obstructions.

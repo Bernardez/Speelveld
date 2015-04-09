@@ -1,10 +1,8 @@
 package nl.noscope.emeraldextraction.objects;
 
-import android.os.Handler;
-import android.util.Log;
-import android.widget.Toast;
 import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GameObject;
+import android.util.Log;
 /**
  * A leaf object. This is the object that wombats should try to eat. Leafs move
  * up a square when touched, unless a rock is in their path.
