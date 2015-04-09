@@ -33,8 +33,6 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		Log.d("Database Operations", "Table created");
-		
-		sdb.close();
 	}
 
 	/**
@@ -48,8 +46,6 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		Log.d("Database Operations", "Table created");
-		
-		sdb.close();
 	}
 	
 	/**
