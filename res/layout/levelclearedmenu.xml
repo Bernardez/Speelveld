@@ -13,19 +13,19 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:scaleType="fitCenter"
-            android:src="@drawable/levelcleared" />
+            android:src="@drawable/levelclearedwithscore" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:layout_marginTop="25dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal" >
 
             <ImageButton
                 android:id="@+id/levelcleared_tomenubutton"
-                android:layout_width="105dp"
-                android:layout_height="107dp"
+                android:layout_width="85dp"
+                android:layout_height="87dp"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
                 android:background="@null"
@@ -34,8 +34,8 @@
 
             <ImageButton
                 android:id="@+id/levelcleared_resetbutton"
-                android:layout_width="105dp"
-                android:layout_height="107dp"
+                android:layout_width="85dp"
+                android:layout_height="87dp"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
                 android:background="@null"
@@ -44,8 +44,8 @@
 
             <ImageButton
                 android:id="@+id/levelcleared_nextlevelbutton"
-                android:layout_width="105dp"
-                android:layout_height="107dp"
+                android:layout_width="85dp"
+                android:layout_height="87dp"
                 android:layout_gravity="center"
                 android:layout_weight="0.33"
                 android:adjustViewBounds="true"
@@ -54,6 +54,28 @@
                 android:src="@drawable/nextlevelbutton" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="65dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="31sp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="65dp"
+            android:layout_marginTop="37dp"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="31sp" />
 
     </FrameLayout>
 
