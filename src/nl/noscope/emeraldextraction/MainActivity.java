@@ -15,12 +15,13 @@ import android.widget.ImageButton;
 
 /**
  * The main activity.
+ * This activity uses EmeraldExtraction to draw a GameBoard.
+ * This activity represents playing a level.
  * 
  * @author Paul de Groot
  * @author Jan Stroet
  */
 public class MainActivity extends Activity {
-	@SuppressWarnings("unused")
 	private EmeraldExtraction game;
 	private EmeraldExtractionBoardView gameView;
 
@@ -50,6 +51,12 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 
+				/**
+				 * Geef een dialoog waarin de gebruiker kan kiezen voor 3 opties:
+				 * Doorgaan met spelen.
+				 * Het level resetten.
+				 * Terug gaan naar het menu.
+				 */
 				final Dialog pause = new Dialog(MainActivity.this);
 
 				pause.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -102,7 +109,6 @@ public class MainActivity extends Activity {
 				});
 			}
 		});
-
 	}
 
 	// Create a set of On screen Navigation buttons
@@ -140,7 +146,6 @@ public class MainActivity extends Activity {
 
 			}
 		});
-
 	}
 		
 		private void hideSystemUI() {

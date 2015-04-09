@@ -16,7 +16,6 @@ import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +34,6 @@ import android.widget.ImageButton;
 public class EmeraldExtraction extends Game {
 
 	/** Reference to the main activity, so some labels can be updated. */
-	@SuppressWarnings("unused")
 	private MainActivity activity;
 
 	/** Maakt een miner aan */
@@ -65,8 +63,6 @@ public class EmeraldExtraction extends Game {
 	/** Houd het level bij */
 	int levelSelection;
 
-	private Resources resources;
-
 	/**
 	 * Constructor.
 	 * 
@@ -79,9 +75,6 @@ public class EmeraldExtraction extends Game {
 
 		// Store reference to the main activity
 		this.activity = activity;
-
-		// get the application's resources
-		resources = activity.getApplicationContext().getResources();
 
 		// Get level selection from intent
 		Intent intent = this.activity.getIntent();

@@ -33,6 +33,8 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		Log.d("Database Operations", "Table created");
+		
+		sdb.close();
 	}
 
 	/**
@@ -46,6 +48,8 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		Log.d("Database Operations", "Table created");
+		
+		sdb.close();
 	}
 	
 	/**
@@ -58,8 +62,10 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		ContentValues cv = new ContentValues();
 		cv.put(TableInfoScore.PLAYER_NAME, player);
 		cv.put(TableInfoScore.PLAYER_SCORE, score);
-		long k = SQ.insert(TableInfoScore.TABLE_NAME, null, cv);
+		SQ.insert(TableInfoScore.TABLE_NAME, null, cv);
 		Log.d("Database operations", "One score row inserted");
+		
+		SQ.close();
 	}
 	
 	/**
@@ -72,8 +78,10 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		cv.put(TableInfoProgress.LEVEL_NUMBER, levelNumber);
 		cv.put(TableInfoProgress.LEVEL_COMPLETED, 1);
 
-		long k = SQ.update(TableInfoProgress.TABLE_NAME, cv, TableInfoProgress.LEVEL_NUMBER+" = " + levelNumber, null);
+		SQ.update(TableInfoProgress.TABLE_NAME, cv, TableInfoProgress.LEVEL_NUMBER+" = " + levelNumber, null);
 		Log.d("Database Operations", "Level " + levelNumber + " is now saved as completed in the database");
+		
+		SQ.close();
 	}
 	
 	/**
@@ -103,6 +111,9 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 			i++;
 			c.moveToNext();
 		}
+		
+		SQ.close();
+		
 		return levels;
 	}
 	
@@ -129,10 +140,12 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 				cv.put(TableInfoProgress.LEVEL_NUMBER, i);
 				cv.put(TableInfoProgress.LEVEL_COMPLETED, 0);
 				
-				long k = SQ.insert(TableInfoProgress.TABLE_NAME, null, cv);
+				SQ.insert(TableInfoProgress.TABLE_NAME, null, cv);
 				Log.d("Database Operations", "Level " + i + " added as non completed");
 			}
 		}
+		
+		SQ.close();
 	}
 	
 	

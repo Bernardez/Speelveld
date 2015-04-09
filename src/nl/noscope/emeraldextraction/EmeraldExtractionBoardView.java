@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 
 /**
- * A view on the CoolGame game board.
+ * A view on the EmeraldExtraction game board.
  * 
  * @author Jan Stroet
  * @author Paul de Groot
@@ -80,10 +80,5 @@ public class EmeraldExtractionBoardView extends GameBoardView {
 		spriteCache.loadTile(BovenRand.TOP_IMAGE, R.drawable.top);
 		spriteCache.loadTile(OnderRand.BOTTOM_IMAGE, R.drawable.bottom);
 		spriteCache.loadTile(Minecart.MINECART_IMAGE, R.drawable.minecart);
-
-		
-		
-		
-		
 	}
 }
