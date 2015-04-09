@@ -25,7 +25,9 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		Log.d("Database operations", "Database created");
 	}
 
-	
+	/**
+	 * Maak de tabellen aan.
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase sdb) {
 		sdb.execSQL(CREATE_QUERY_SCORE);
@@ -33,16 +35,24 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		Log.d("Database Operations", "Table created");
 	}
 
+	/**
+	 * Delete de gebruikte tabellen en maakt ze opnieuw aan.
+	 * Wanneer de database version verhoogd wordt
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase sdb, int oldVersion, int newVersion) {
 		sdb.execSQL("DROP TABLE " + TableInfoScore.TABLE_NAME);
 		sdb.execSQL("DROP TABLE " + TableInfoProgress.TABLE_NAME);
-		
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
 		Log.d("Database Operations", "Table created");
 	}
 	
+	/**
+	 * Voegt een regel toe aan de database met naam en score.
+	 * @param player  Een spelernaam.
+	 * @param score   De score die gehaald is.
+	 */
 	public void addScore(DatabaseOperations dop, String player, int score) {
 		SQLiteDatabase SQ = dop.getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -52,6 +62,10 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		Log.d("Database operations", "One score row inserted");
 	}
 	
+	/**
+	 * Past een level regel aan zodat de pogress 1 is (gehaald).
+	 * @param levelNumber  Welke level er voltooit is.
+	 */
 	public void levelComplete(DatabaseOperations dop, int levelNumber) {
 		SQLiteDatabase SQ = dop.getWritableDatabase();
 		ContentValues cv = new ContentValues();
@@ -59,10 +73,13 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		cv.put(TableInfoProgress.LEVEL_COMPLETED, 1);
 
 		long k = SQ.update(TableInfoProgress.TABLE_NAME, cv, TableInfoProgress.LEVEL_NUMBER+" = " + levelNumber, null);
-		//long k = SQ.insert(TableInfoProgress.TABLE_NAME, null, cv);
-		Log.d("Database Operations", "Level " + levelNumber + " is now saved as 1 in the database");
+		Log.d("Database Operations", "Level " + levelNumber + " is now saved as completed in the database");
 	}
 	
+	/**
+	 * Geeft een lijst terug met alle levels die voltooid zijn.
+	 * @return int[] Lijst met voltooide levels als getallen.
+	 */
 	public int[] completedLevels(DatabaseOperations dop) {
 		SQLiteDatabase SQ = dop.getReadableDatabase();
 		
@@ -81,16 +98,19 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 		int i = 0;
 		
 		c.moveToFirst();
-		Log.d("Database Operations", "Before loop");
 		while (c.isAfterLast() == false) {
 			levels[i] = c.getInt(0);
 			i++;
 			c.moveToNext();
 		}
-		Log.d("Database Operations", "after loop");
 		return levels;
 	}
 	
+	/**
+	 * Waneer dit uitgevoerd wordt zullen
+	 * er 10 levels aangemaakt worden.
+	 * Wanneer ze nog niet bestaan.
+	 */
 	public void appendNonExistingLevels(DatabaseOperations dop) {
 		SQLiteDatabase SQ = dop.getReadableDatabase();
 		String[] projection = {
