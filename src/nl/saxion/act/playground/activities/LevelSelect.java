@@ -85,6 +85,11 @@ public class LevelSelect extends Activity {
 		});
 	}
 
+	/**
+	 * Opens the database with all completed levels
+	 * When level 1 is completed level 2 will become 'unlocked'
+	 * and so on.
+	 */
 	private void loadLevelSelectImages() {
 		// Load level progress
 		Context context = LevelSelect.getContext();
@@ -133,21 +138,6 @@ public class LevelSelect extends Activity {
 			}
 		}
 	}
-
-	// private void setupBackButton() {
-	// ImageButton levelButton = (ImageButton) findViewById(R.id.backButton);
-	// levelButton.setOnClickListener(new View.OnClickListener() {
-	//
-	// @Override
-	// public void onClick(View v) {
-	// // TODO Auto-generated method stub
-	// hideSystemUI();
-	//
-	// startActivity(new Intent(LevelSelect.this, MainMenuActivity.class));
-	//
-	// }
-	// });
-	// }
 
 	private void hideSystemUI() {
 		View mDecorView = getWindow().getDecorView();
