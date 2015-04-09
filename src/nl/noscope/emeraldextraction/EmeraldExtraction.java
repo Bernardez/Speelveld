@@ -14,7 +14,6 @@ import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -23,7 +22,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * Emerald Extraction
@@ -312,6 +313,17 @@ public class EmeraldExtraction extends Game {
 				.findViewById(R.id.levelcleared_resetbutton);
 		ImageButton succesAdvance = (ImageButton) levelSucces
 				.findViewById(R.id.levelcleared_nextlevelbutton);
+		
+		TextView scoreText = (TextView) levelSucces.findViewById(R.id.score);
+		TextView highScoreText = (TextView) levelSucces.findViewById(R.id.highScore);
+		
+		// Voeg de scores toe aan het dialoog
+		scoreText.setText(String.valueOf(score.getScore()));
+		try {
+			highScoreText.setText(String.valueOf(DOP.getHighscore(DOP, levelSelection)));
+		} catch (Exception ex) {
+			highScoreText.setText("");
+		}
 
 		succesSelection.setOnClickListener(new OnClickListener() {
 			// Ga terug naar Level Selection
