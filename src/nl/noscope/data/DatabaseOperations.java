@@ -16,8 +16,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseOperations extends SQLiteOpenHelper {
-	public static final int database_version = 1;
-	public String CREATE_QUERY_SCORE = "CREATE TABLE "+TableInfoScore.TABLE_NAME+"("+TableInfoScore.PLAYER_NAME+" TEXT,"+TableInfoScore.PLAYER_SCORE+" INTEGER );";
+	public static final int database_version = 3;
+	public String CREATE_QUERY_SCORE = "CREATE TABLE "+TableInfoScore.TABLE_NAME+"("+TableInfoScore.PLAYER_lEVEL+" INTEGER,"+TableInfoScore.PLAYER_SCORE+" INTEGER );";
 	public String CREATE_QUERY_PROGRESS = "CREATE TABLE "+TableInfoProgress.TABLE_NAME+"("+TableInfoProgress.LEVEL_NUMBER+" INTEGER PRIMARY KEY,"+TableInfoProgress.LEVEL_COMPLETED+" INTEGER );";
 	
 	public DatabaseOperations(Context context) {
@@ -49,19 +49,28 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 	}
 	
 	/**
-	 * Voegt een regel toe aan de database met naam en score.
-	 * @param player  Een spelernaam.
+	 * Voegt een regel toe aan de database met level nummer en score.
+	 * @param levelNumber  Een level nummer.
 	 * @param score   De score die gehaald is.
 	 */
-	public void addScore(DatabaseOperations dop, String player, int score) {
+	public void addScore(DatabaseOperations dop, int levelNumber, int score) {
 		SQLiteDatabase SQ = dop.getWritableDatabase();
 		ContentValues cv = new ContentValues();
-		cv.put(TableInfoScore.PLAYER_NAME, player);
+		cv.put(TableInfoScore.PLAYER_lEVEL, levelNumber);
 		cv.put(TableInfoScore.PLAYER_SCORE, score);
 		SQ.insert(TableInfoScore.TABLE_NAME, null, cv);
 		Log.d("Database operations", "One score row inserted");
 		
 		SQ.close();
+	}
+	
+	public int getHighscore(DatabaseOperations dop, int levelNumber) {
+		SQLiteDatabase SQ = dop.getReadableDatabase();
+		
+		Cursor c = SQ.rawQuery("Select MIN(" + TableInfoScore.PLAYER_SCORE+ ") AS highscore FROM " + TableInfoScore.TABLE_NAME + " WHERE " + TableInfoScore.PLAYER_lEVEL + " = " + levelNumber, null);
+		
+		c.moveToNext();
+		return c.getInt(0);
 	}
 	
 	/**

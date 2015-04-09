@@ -24,23 +24,12 @@ public class MainMenuActivity extends Activity {
 
 		//Database operations
 		Log.d("Database operations", "main menu activity oncreate //database operations");
-		String player_name = "Henk";
-		int player_score = 100;
 		Context context = MainMenuActivity.getContext();
 		DatabaseOperations DB = new DatabaseOperations(context);
-		DB.addScore(DB, player_name, player_score);
 		
 		DB.appendNonExistingLevels(DB);
 		Log.d("Database Operatsions main", "After append non existing Levels");
 		
-		//int[] completedLevels = DB.completedLevels(DB);
-		
-		//DB.levelComplete(DB, 1);
-		
-		//for (int i : completedLevels) {
-			//Log.d("Database Operatsions main", "Level: " + i + " is completed");
-		//}
-				
 	}
 
 	private void setupNewGameButton() {

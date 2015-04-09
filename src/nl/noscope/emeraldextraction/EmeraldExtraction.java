@@ -14,6 +14,7 @@ import nl.noscope.level.ObjectHelper;
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -62,6 +63,9 @@ public class EmeraldExtraction extends Game {
 
 	/** Houd het level bij */
 	int levelSelection;
+	
+	/** Houd een score bij */
+	Score score = new Score(0,0);
 
 	/**
 	 * Constructor.
@@ -80,6 +84,8 @@ public class EmeraldExtraction extends Game {
 		Intent intent = this.activity.getIntent();
 		levelSelection = intent.getIntExtra("LEVEL_ID", 1);
 		Log.d("EmeraldExtracion", "Level id levelSelection int = " + levelSelection);
+		
+		score.setLevelNumber(levelSelection);
 
 		// Reset the game
 		initNewGame(activity, levelSelection);
@@ -237,6 +243,9 @@ public class EmeraldExtraction extends Game {
 	}
 
 	public void gameProgressCheck() {
+		score.setScore(score.getScore() + 1);
+		Log.d("Score", "De score is: " + score.getScore());
+		
 		int emeraldToRemove = -1;
 		
 		// Start de methode gravityCheck van Emerald.
@@ -268,9 +277,17 @@ public class EmeraldExtraction extends Game {
 	public void levelCleared() {
 		Log.d("EmeraldExtraction", "Level gewonnen");
 
+		// Zet in de database dat dit level is voltooid
 		DatabaseOperations DOP = new DatabaseOperations(
 				activity.getApplicationContext());
 		DOP.levelComplete(DOP, levelSelection);
+		
+		// Zet in de database de score wat gehaald is bij dit level
+		DOP.addScore(DOP, levelSelection, score.getScore());
+		Log.d("EmeraldExtraction", "Score: " + score.getScore() + " Toegevoegd");
+		
+		
+		Log.d("EmeraldExtraction", "highscore is: " + DOP.getHighscore(DOP, levelSelection));
 
 		
 		// Open een dialoog voor het opnieuw starten, volgende
