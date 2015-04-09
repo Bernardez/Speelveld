@@ -27,6 +27,8 @@ import android.widget.ImageButton;
 
 /**
  * Emerald Extraction
+ * Informatie houder van het spelbord.
+ * Bijzondere GameObjecten worden ook bijgehouden. (Emeralds, stonemove, miner)
  * 
  * @author Boyd
  */
@@ -81,12 +83,10 @@ public class EmeraldExtraction extends Game {
 		// get the application's resources
 		resources = activity.getApplicationContext().getResources();
 
+		// Get level selection from intent
 		Intent intent = this.activity.getIntent();
 		levelSelection = intent.getIntExtra("LEVEL_ID", 1);
-		Log.d("EmeraldExtracion",
-				"Level id intent = " + intent.getIntExtra("LEVEL_ID", 1));
-		Log.d("EmeraldExtracion", "Level id levelSelection int = "
-				+ levelSelection);
+		Log.d("EmeraldExtracion", "Level id levelSelection int = " + levelSelection);
 
 		// Reset the game
 		initNewGame(activity, levelSelection);
@@ -102,12 +102,14 @@ public class EmeraldExtraction extends Game {
 	}
 
 	/**
-	 * Starts a new game. Resets the score and places all objects in the right
-	 * place.
+	 * Starts a new game. Reset the board. Create miner object.
+	 * Load Level from resources.
+	 * Scan level resources to fill in the GameBoard with objects.
+	 * 
 	 */
 
 	public void initNewGame(MainActivity activity, int levelSelection) {
-
+		// Reset the GameBoard. Remove all its objects
 		board = getGameBoard();
 		board.removeAllObjects();
 
@@ -115,53 +117,33 @@ public class EmeraldExtraction extends Game {
 		miner = new Miner();
 
 		// open a level with the level number
-		Log.d("EmeraldExtrection", "bevore create inputfile" + levelSelection);
 		InputStream is = null;
 
 		switch (levelSelection) {
-		case 1:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level1);
+		case 1:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level1);
 			break;
-		case 2:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level2);
+		case 2:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level2);
 			break;
-		case 3:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level3);
+		case 3:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level3);
 			break;
-		case 4:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level4);
+		case 4:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level4);
 			break;
-		case 5:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level5);
+		case 5:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level5);
 			break;
-		case 6:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level6);
+		case 6:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level6);
 			break;
-		case 7:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level7);
+		case 7:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level7);
 			break;
-		case 8:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level8);
+		case 8:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level8);
 			break;
-		case 9:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level9);
+		case 9:	is = activity.getApplicationContext().getResources().openRawResource(R.raw.level9);
 			break;
-		case 10:
-			is = activity.getApplicationContext().getResources()
-					.openRawResource(R.raw.level10);
+		case 10: is = activity.getApplicationContext().getResources().openRawResource(R.raw.level10);
 			break;
 		}
-		Log.d("EmeraldExtrection", "after create inputfile");
+		Log.d("EmeraldExtrection", "Inputfile created");
 
+		// Convert level resouce to String
 		String fileLevel = "";
 		try {
 			fileLevel = convertStreamToString(is);
@@ -171,18 +153,26 @@ public class EmeraldExtraction extends Game {
 		}
 
 		Scanner in = new Scanner(fileLevel);
-
 		int levelRow = 0;
+		
+		// Read the Level String until its done
 		while (in.hasNext()) {
 			String line = in.nextLine();
-			Log.d("EmeraldExtraction", "Level regel ingelezen: " + line);
-			if (line.startsWith("*")) {
-			} else {
+			
+			// Regels die beginnen met een * worden niet ingelezen
+			if (!line.startsWith("*")) {
 				char[] levelColumns = line.toCharArray();
 				for (int i = 0; i < levelColumns.length; i++) {
+					
 					if (levelColumns[i] == 'n') {
+						
+						// Gebruikt het eerder aangemaakte Miner object en
+						// stopt het op de jusite positie in het Game Board
 						board.addGameObject(miner, i, levelRow);
 					} else if (levelColumns[i] == 'e') {
+						
+						// Stopt een nieuw Emerald object in de lijst van
+						// Emeralds en plaats dezelfde emerald op het bord.
 						emeralds.add(new Emerald());
 						Log.d("EmeraldExtraction", "emeraldIndex : "
 								+ emeraldIndex);
@@ -190,13 +180,20 @@ public class EmeraldExtraction extends Game {
 								levelRow);
 						emeraldIndex++;
 					} else if (levelColumns[i] == 'd') {
-
+						
+						// Voeg niks toe als het een 'd' Doorgang is
 					} else if (levelColumns[i] == 'f') {
+						
+						// Stopt een nieuw StoneMove object in de lijst van
+						// StoneMoves en plaats dezelfde StoneMove op het bord.
 						stoneMoves.add(new StoneMove());
 						board.addGameObject(stoneMoves.get(stoneMoveIndex), i,
 								levelRow);
 						stoneMoveIndex++;
 					} else {
+						
+						// Voor alle andere letters, gebruik de ObjectHelper
+						// Class voor het toevoegen van een GameObject m.b.v. een letter.
 						board.addGameObject(
 								ObjectHelper.getObject(levelColumns[i]), i,
 								levelRow);
@@ -205,10 +202,8 @@ public class EmeraldExtraction extends Game {
 				levelRow++;
 			}
 		}
-
-		// for (int i = 0; i < 5; i++) { emeralds.add(new Emerald()); }
-		// for (int i = 0; i < 10; i++) { stoneMoves.add(new StoneMove()); }
-
+		
+		in.close();
 		// Redraw the game view
 		board.updateView();
 	}
@@ -227,67 +222,54 @@ public class EmeraldExtraction extends Game {
 	public void moveMinerUp() {
 		miner.walkUp(board);
 		gameProgressCheck();
-
 		board.updateView();
 	}
 
 	public void moveMinerDown() {
 		miner.walkDown(board);
 		gameProgressCheck();
-
 		board.updateView();
 	}
 
 	public void moveMinerLeft() {
 		miner.walkLeft(board);
-		Log.d("EmeraldExtraction", "Bevore progress check");
 		gameProgressCheck();
-		Log.d("EmeraldExtraction", "after progress check");
-
 		board.updateView();
 	}
 
 	public void moveMinerRight() {
 		miner.walkRight(board);
 		gameProgressCheck();
-
 		board.updateView();
 	}
 
 	public void gameProgressCheck() {
 		int emeraldToRemove = -1;
+		
+		// Start de methode gravityCheck van Emerald.
+		// Delete de emerald als gravityCheck true returnt.
 		for (Emerald emerald : emeralds) {
-			Log.d("EmeraldExtraction",
-					"Dit is emerald: " + emeralds.indexOf(emerald));
 			if (emerald != null) {
 				if (emerald.gravityCheck(board)) {
-					Log.d("EmeraldExtraction",
-							"Index emerald die verwijdert wordt: "
-									+ emeralds.indexOf(emerald));
-					// emeralds.remove(emerald);
 					emeraldToRemove = emeralds.indexOf(emerald);
-					Log.d("EmeraldExtraction", "Emerald removed");
-					Log.d("EmeraldExtraction",
-							"emeralds groote: " + emeralds.size());
 				}
 			}
 		}
 		if (emeraldToRemove >= 0) {
 			emeralds.remove(emeraldToRemove);
 		}
-
+		
+		// Start de methode gravitiyCheck van StoneMove
 		for (StoneMove stoneMove : stoneMoves) {
 			if (stoneMove != null) {
 				stoneMove.gravityCheck(board);
 			}
 		}
 
+		// Het level is voltooid als er geen emeralds meer bestaan.
 		if (emeralds.size() < 1) {
 			levelCleared();
-
 		}
-
-		Log.d("MainActivity", "end GameProgressCheck");
 	}
 
 	public void levelCleared() {
@@ -297,6 +279,9 @@ public class EmeraldExtraction extends Game {
 				activity.getApplicationContext());
 		DOP.levelComplete(DOP, levelSelection);
 
+		
+		// Open een dialoog voor het opnieuw starten, volgende
+		// level of terug gaan naar Level Selection menu
 		final Dialog levelSucces = new Dialog(activity,
 				android.R.style.Theme_Light_NoTitleBar_Fullscreen);
 
@@ -319,7 +304,7 @@ public class EmeraldExtraction extends Game {
 				.findViewById(R.id.levelcleared_nextlevelbutton);
 
 		succesSelection.setOnClickListener(new OnClickListener() {
-
+			// Ga terug naar Level Selection
 			@Override
 			public void onClick(View v) {
 				activity.finish();
@@ -328,7 +313,7 @@ public class EmeraldExtraction extends Game {
 		});
 
 		succesRetry.setOnClickListener(new OnClickListener() {
-
+			// Herstart dit level. Geef een intent mee met dit level nummer
 			@Override
 			public void onClick(View v) {
 				activity.finish();
@@ -344,7 +329,7 @@ public class EmeraldExtraction extends Game {
 		});
 
 		succesAdvance.setOnClickListener(new OnClickListener() {
-
+			// Start het volgende level. Geef een intent mee met het volgende level
 			@Override
 			public void onClick(View v) {
 				activity.finish();
