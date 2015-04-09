@@ -1,5 +1,11 @@
 package nl.noscope.data;
 
+/**
+ * @author Bas
+ * De TableDataScore class houd de strings vast
+ * voor het opmaken van de tabel game_scores.
+ */
+
 import android.provider.BaseColumns;
 
 public class TableDataScore {
@@ -11,7 +17,6 @@ public class TableDataScore {
 	
 	public static abstract class TableInfoScore implements BaseColumns
 	{
-		
 		public static final String PLAYER_NAME = "player_name";
 		public static final String PLAYER_SCORE = "player_score";
 		public static final String DATABASE_NAME = "game_info";

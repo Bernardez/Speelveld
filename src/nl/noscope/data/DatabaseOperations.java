@@ -2,7 +2,8 @@ package nl.noscope.data;
 
 /**
  * @author Bas
- * Deze code zorgt ervoor dat alles word opgeslagen in de Database.
+ * De DatabaseOperations class verzogt het opslaan en uitlezen van de database.
+ * De scores en level vooruitgang kunnen worden opgeslagen.
  */
 
 import nl.noscope.data.TableDataProgress.TableInfoProgress;
@@ -29,14 +30,17 @@ public class DatabaseOperations extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase sdb) {
 		sdb.execSQL(CREATE_QUERY_SCORE);
 		sdb.execSQL(CREATE_QUERY_PROGRESS);
-		//sdb.execSQL(CREATE_QUERY_LEVEL);
 		Log.d("Database Operations", "Table created");
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
-
+	public void onUpgrade(SQLiteDatabase sdb, int oldVersion, int newVersion) {
+		sdb.execSQL("DROP TABLE " + TableInfoScore.TABLE_NAME);
+		sdb.execSQL("DROP TABLE " + TableInfoProgress.TABLE_NAME);
+		
+		sdb.execSQL(CREATE_QUERY_SCORE);
+		sdb.execSQL(CREATE_QUERY_PROGRESS);
+		Log.d("Database Operations", "Table created");
 	}
 	
 	public void addScore(DatabaseOperations dop, String player, int score) {
