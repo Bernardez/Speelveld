@@ -69,7 +69,7 @@ public class EmeraldExtraction extends Game {
 	Score score = new Score(0,0);
 	
 	/** Maakt een textview scorelabel aan */
-	TextView scoreLabel = (TextView) activity.findViewById(R.id.scoreLabel);
+	TextView scoreLabel;
 	
 	/**
 	 * Constructor.
@@ -250,7 +250,11 @@ public class EmeraldExtraction extends Game {
 	public void gameProgressCheck() {
 		score.setScore(score.getScore() + 1);
 		Log.d("Score", "De score is: " + score.getScore());
+		
+		// Sla de nieuwe score ook op in de lavel op het scherm
+		TextView scoreLabel = (TextView) this.activity.findViewById(R.id.scoreLabel);
 		scoreLabel.setText(String.valueOf(score.getScore()));
+		
 		int emeraldToRemove = -1;
 		
 		// Start de methode gravityCheck van Emerald.
