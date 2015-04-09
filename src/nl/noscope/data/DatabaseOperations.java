@@ -25,7 +25,6 @@ import android.util.Log;
 public class DatabaseOperations extends SQLiteOpenHelper {
 	public static final int database_version = 1;
 	public String CREATE_QUERY_SCORE = "CREATE TABLE "+TableInfoScore.TABLE_NAME+"("+TableInfoScore.PLAYER_NAME+" TEXT,"+TableInfoScore.PLAYER_SCORE+" INTEGER );";
-	//public String CREATE_QUERY_LEVEL = "CREATE TABLE "+TableInfoLevel.TABLE_NAME+"("+TableInfoLevel.LEVEL_NUMBER+ " INTEGER,"+TableInfoLevel.LEVEL_BLOCK_TYPE+" INTEGER,"+ TableInfoLevel.LEVEL_X+" INTEGER,"+TableInfoLevel.LEVEL_Y+" INTEGER );";
 	public String CREATE_QUERY_PROGRESS = "CREATE TABLE "+TableInfoProgress.TABLE_NAME+"("+TableInfoProgress.LEVEL_NUMBER+" INTEGER PRIMARY KEY,"+TableInfoProgress.LEVEL_COMPLETED+" INTEGER );";
 	
 	public DatabaseOperations(Context context) {
