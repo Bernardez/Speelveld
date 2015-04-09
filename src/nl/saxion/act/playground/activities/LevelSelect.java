@@ -28,7 +28,7 @@ public class LevelSelect extends Activity {
 		setContentView(R.layout.activity_level__select);
 		Log.d("LevelSelect onCreate", "After setContentView");
 
-		// Instantiate all buttons (except 1)
+		// Instantiate all buttons
 		level1 = (ImageButton) findViewById(R.id.level1);
 		level2 = (ImageButton) findViewById(R.id.level2);
 		level3 = (ImageButton) findViewById(R.id.level3);
@@ -42,7 +42,6 @@ public class LevelSelect extends Activity {
 
 		loadLevelSelectImages();
 
-		// setupBackButton();
 		setupLevelButtons(R.id.level1, 1);
 		setupLevelButtons(R.id.level2, 2);
 		setupLevelButtons(R.id.level3, 3);

@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 
 		// Create On screen Pause Button
 		ImageButton pauseButton = (ImageButton) findViewById(R.id.pauseButton);
+		
 
 		// Create in menu buttons
 

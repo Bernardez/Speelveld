@@ -67,7 +67,10 @@ public class EmeraldExtraction extends Game {
 	
 	/** Houd een score bij */
 	Score score = new Score(0,0);
-
+	
+	/** Maakt een textview scorelabel aan */
+	TextView scoreLabel = (TextView) activity.findViewById(R.id.scoreLabel);
+	
 	/**
 	 * Constructor.
 	 * 
@@ -80,6 +83,8 @@ public class EmeraldExtraction extends Game {
 
 		// Store reference to the main activity
 		this.activity = activity;
+		
+		
 
 		// Get level selection from intent
 		Intent intent = this.activity.getIntent();
@@ -112,7 +117,6 @@ public class EmeraldExtraction extends Game {
 		// Reset the GameBoard. Remove all its objects
 		board = getGameBoard();
 		board.removeAllObjects();
-
 		// Pre-define the objects that has influence on movement and gravity
 		miner = new Miner();
 
@@ -246,7 +250,7 @@ public class EmeraldExtraction extends Game {
 	public void gameProgressCheck() {
 		score.setScore(score.getScore() + 1);
 		Log.d("Score", "De score is: " + score.getScore());
-		
+		scoreLabel.setText(String.valueOf(score.getScore()));
 		int emeraldToRemove = -1;
 		
 		// Start de methode gravityCheck van Emerald.
