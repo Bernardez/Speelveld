@@ -4,52 +4,31 @@ import nl.noscope.emeraldextraction.objects.*;
 import nl.saxion.act.playground.model.GameObject;
 
 public class ObjectHelper {
+	
+	/**
+	 * @param char  Welke letter bepaald welk GameObject je terug krijgt.
+	 * @return GameObject
+	 * 
+	 * @author Bas Siegerink
+	 */
 	public static GameObject getObject(char type) {
-		if (type == 's') {
-			return new Stone();
+		switch(type) {
+		case 's': return new Stone();
+		case 'i': return new Iron();
+		case 'e': return new Emerald();
+		case 'm': return new Minecart();
+		case 'z': return new Sand();
+		case 'l': return new LinkerOnderHoek();
+		case 'o': return new OnderRand();
+		case 'r': return new RechterOnderHoek();
+		case 'k': return new LinkerBovenHoek();
+		case 'b': return new BovenRand();
+		case 't': return new RechterBovenHoek();
+		case 'a': return new LinkerRand();
+		case 'c': return new RechterRand();
+		case 'n': return new Miner();
+		case 'f': return new StoneMove();
+		default: return null;
 		}
-		else if (type == 'i') {
-			return new Iron();
-		}
-		else if (type == 'e') {
-			return new Emerald();
-		}
-		else if (type == 'm') {
-			return new Minecart();
-		}
-		else if (type == 'z') {
-			return new Sand();
-		}
-		else if (type == 'l') {
-			return new LinkerOnderHoek();
-		}
-		else if (type == 'o') {
-			return new OnderRand();
-		}
-		else if (type == 'r') {
-			return new RechterOnderHoek();
-		}
-		else if (type == 'k') {
-			return new LinkerBovenHoek();
-		}
-		else if (type == 'b') {
-			return new BovenRand();
-		}
-		else if (type == 't') {
-			return new RechterBovenHoek();
-		}
-		else if (type == 'a') {
-			return new LinkerRand();
-		}
-		else if (type == 'c') {
-			return new RechterRand();
-		}
-		else if (type == 'n') {
-			return new Miner();
-		}
-		else if (type == 'f') {
-			return new StoneMove();
-		}
-		return null;
 	}
 }
