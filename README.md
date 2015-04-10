@@ -1,4 +1,7 @@
-# Speelveld
-read me lol
-
-Commit test
+Beschrijving van het spel.
+  
+Emerald Extraction is een 2D puzzel spel. Je bent een mijnwerker en delft edelstenen die zeer waardevol zijn. De edelstenen (Emeralds) zitten op lastige plekken. Het doel is om de edelstenen naar je mijnkar te duwen zodat je ze mee kan nemen de mijn uit. Het spel bestaat uit 10 puzzel levels. Wanneer je begint kan je alleen level 1 spelen. Je voltooit een level als je alle edelstenen in de mijnkar hebt gekregen. In een database wordt bijgehouden welke levels je voltooid hebt. Zodat je bij een volgende speelsessie weer verder kan spelen. Tijdens het spelen heeft de mijner enkele beperkingen om het spel moeilijker te maken. Zo kan je: niet 2 objecten (edelstenen of stenen) tegelijk duwen. Niet een object door zand duwen. Enkele objecten (vast steen en ijzer) kan je niet hakken. Je kan de emerald niet zijwaarts in een mijnkar duwen.
+Dit is de basis voor het puzzel spel Emerald Extraction. Het spel is verder voorzien van handige pauze knoppen, menu selectie en een vragenscherm wat je wil doen als je een level voltooid hebt. Hierbij is de grafische interface zelf ontworpen. De interface is makkelijk te begrijpen wat er voor zorgt dat jong en oud het spel kan spelen.
+Het spel maakt gebruik van een Grid. Dit wil zeggen dat een 2 dimensionele array het level opmaakt. Op elke positie van de array kan een object zitten. Om een level te maken voegen we veel zand toe, enkele stenen, een emerald en een eindpunt. De objecten bewegen niet echt. Maar vervangen een object in de array.
+ 
+Emerald Extraction - Een puzzel spel gebrouwd op een Grid
